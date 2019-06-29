@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.littlepage.mapper.FilmMapper">
+
+
+	<insert id="addFilm" parameterType="com.littlepage.entity.Film">
+		INSERT INTO film
+        VALUES
+        (
+        null,#{name},#{posterLink},#{director},#{scriptWriter},
+        #{actor},#{type},#{location},#{language},#{releaseDate},
+        #{length},#{reflectDate}
+        )
+	</insert>
+	
+	<select id="findAll" resultType="com.littlepage.entity.Film">
+		SELECT * FROM film
+	</select>
+	<!-- 
+	<delete id="deleteUser" parameterType="com.littlepage.mybatis.entity.User">
+		DELETE FROM user
+		WHERE
+		name=#{name}
+	</delete>
+	
+	<update id="updateUser" parameterType="com.littlepage.mybatis.entity.User">
+		UPDATE user SET
+		password=#{password}
+		WHERE
+		name=#{name}
+	</update>
+	
+	<select id="show" resultType="com.littlepage.mybatis.entity.User">
+		SELECT * from user
+	</select>
+	
+	<select id="selectByExample" resultType="com.littlepage.mybatis.entity.User">
+		SELECT * from user
+	</select>
+	 -->
+</mapper>
+
