@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.littlepage.entity.User;
 import com.littlepage.mapper.UserMapper;
-
+/**
+ * 注册和登录服务
+ * @author 74302
+ *
+ */
 @Service
 public class RegisterAndLoginService {
 	

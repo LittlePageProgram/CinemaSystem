@@ -122,7 +122,7 @@
 	   		<th>上映日期</th>
 	   	</tr>
 	   	<tr th:each="film:${filmList}">
-			<td th:text="${film.name} "></td>
+			<a th:href="@{filmInfo(id=${film.id})}"><td th:text="${film.name} "></td></a>
 			<td th:text="${film.actor}"></td>
 			<td th:text="${film.type}"></td>
 			<td th:text="${film.language}"></td>

@@ -1,12 +1,8 @@
 package com.littlepage.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.littlepage.entity.Film;
 import com.littlepage.service.FilmService;
-
+/**
+ * 管理员控制器页面
+ * @author 74302
+ *
+ */
 @Controller
 @RequestMapping("/administrator")
 public class AdministratorController {
@@ -60,6 +60,12 @@ public class AdministratorController {
 		List<Film> li=filmService.findAll();
 		model.addAttribute("filmList",li);
 		return "/administrator/filmList";
+	}
+	
+	@RequestMapping("/filmInfo")
+	public String filmInfo(@RequestParam("filmInfo")int id) {
+		Film tempFilm=filmService.findById(id);
+		return "/administrator/filmInfo";
 	}
 	
 	/**
