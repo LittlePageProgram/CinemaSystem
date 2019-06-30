@@ -119,14 +119,14 @@
 	   	</tr>
 	   	<tr>
 	   		<td>海报图片</td>
-	   		<td><img th:src="" /></td>
-	   		<td th:text="${tempFilmInfo.posterLink}">海报图片</td>
+	   		<td><img th:src="@{'~/tempPic/'+${tempPicPath}}" /></td>
 	   	</tr>
 	   	<tr>
 	   		<td>导演</td>
 	   		<td th:text="${tempFilmInfo.director}">导演</td>
 	   	</tr>
 	   	<tr>
+	   	
 	   		<td>编剧</td>
 	   		<td th:text="${tempFilmInfo.scriptWriter}">编剧</td>
 	   	</tr>

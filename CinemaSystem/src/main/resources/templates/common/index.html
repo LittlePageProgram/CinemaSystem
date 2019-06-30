@@ -6,31 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <!-- Le styles -->
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;
-        padding-bottom: 40px;
+        padding-bottom: 60px;
       }
 
       /* Custom container */
-      .container-narrow {
+      .container {
         margin: 0 auto;
-        max-width: 700px;
+        max-width: 1000px;
       }
-      .container-narrow > hr {
-        margin: 30px 0;
+      .container > hr {
+        margin: 60px 0;
       }
 
       /* Main marketing message and sign up button */
       .jumbotron {
-        margin: 60px 0;
+        margin: 80px 0;
         text-align: center;
       }
       .jumbotron h1 {
-        font-size: 72px;
+        font-size: 100px;
         line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
       }
       .jumbotron .btn {
         font-size: 21px;
@@ -43,6 +49,36 @@
       }
       .marketing p + h4 {
         margin-top: 28px;
+      }
+
+
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+        padding: 0;
+      }
+      .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+      }
+      .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+      }
+      .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
       }
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -62,27 +98,36 @@
 
   <body>
 
-    <div class="container-narrow">
+    <div class="container">
 
       <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">首页</a></li>
-          <li><a href="/loginAndRegister/register">注册</a></li>
-          <li><a href="/loginAndRegister/login">登录</a></li>
-        </ul>
-        <h3 class="muted">Habily影院</h3>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/common/filmList">FilmList</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+      </div>
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Let's Start!</h1>
+        <p class="lead">Welcome to Adminstrator Page,Let's know how to use it from this bootstrap!</p>
+        <a class="btn btn-large btn-success" href="/common/filmList">Show the film now!</a>
       </div>
 
       <hr>
 
-      <div class="jumbotron">
-        <h1>欢迎来到Habily影院</h1>
-        <p class="lead">在我的心里 其实一直有座电影院<br /> 放映着我的心情 我的梦 我的渴望</p>
-        <a class="btn btn-large btn-success" href="#">点击登录</a>
-      </div>
-
-
-
+ 
     </div> <!-- /container -->
 
     <!-- Le javascript
@@ -101,6 +146,6 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
-
+	
   </body>
 </html>

@@ -99,8 +99,8 @@
             <div class="container">
               <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="/administrator/addFilm">ReleaseFilm</a></li>
                 <li><a href="/administrator/filmList">FilmList</a></li>
+                <li><a href="#">Others</a></li>
                 <li><a href="#">Others</a></li>
                 <li><a href="#">Others</a></li>
                 <li><a href="#">Others</a></li>
@@ -114,52 +114,23 @@
 	<div class="mdui-table-fluid">
 	  <table class="mdui-table">
 	   	<tr>
-	   		<td>名称</td>
-	   		<td th:text="${tempFilmInfo.name}">名称</td>
+	   		<th>名称</th>
+	   		<th>主演</th>
+	   		<th>类型</th>
+	   		<th>语言</th>
+	   		<th>导演</th>
+	   		<th>上映日期</th>
+	   		<th>详细信息</th>
 	   	</tr>
-	   	<tr>
-	   		<td>海报图片</td>
-	   		<!-- /tempPic/pic5193708.jpg -->
-	   		<td><img th:src="'/tempPic/'+${tempPicPath}" /></td>
-	   	</tr>
-	   	<tr>
-	   		<td>导演</td>
-	   		<td th:text="${tempFilmInfo.director}">导演</td>
-	   	</tr>
-	   	<tr>
-	   	
-	   		<td>编剧</td>
-	   		<td th:text="${tempFilmInfo.scriptWriter}">编剧</td>
-	   	</tr>
-	   	<tr>
-	   		<td>主演</td>
-	   		<td th:text="${tempFilmInfo.actor}">主演</td>
-	   	</tr>
-	   	
-	   	<tr>
-	   		<td>类型</td>
-	   		<td th:text="${tempFilmInfo.type}">类型</td>
-	   	</tr>
-	   	<tr>
-	   		<td>地区</td>
-	   		<td th:text="${tempFilmInfo.location}">地区</td>
-	   	</tr>
-	   	<tr>
-	   		<td>语言</td>
-	   		<td th:text="${tempFilmInfo.language}">语言</td>
-	   	</tr>
-	   	<tr>
-	   		<td>上映日期</td>
-	   		<td th:text="${tempFilmInfo.releaseDate}">上映日期</td>
-	   	</tr>
-	   	<tr>
-	   		<td>时长</td>
-	   		<td th:text="${tempFilmInfo.length}">时长</td>
-	   	</tr>
-	   	<tr>
-	   		<td>下映日期</td>
-	   		<td th:text="${tempFilmInfo.reflectDate}">下映日期</td>
-	   	</tr>
+	   	<tr th:each="film:${filmList}">
+			<td th:text="${film.name} "></td>
+			<td th:text="${film.actor}"></td>
+			<td th:text="${film.type}"></td>
+			<td th:text="${film.language}"></td>
+			<td th:text="${film.director}"></td>
+			<td th:text="${film.releaseDate}"></td>
+			<td><a th:href="@{filmInfo(id=${film.id})}">链接</a></td>
+		</tr>
 	  </table>
 	</div>
 </html>

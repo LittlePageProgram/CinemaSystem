@@ -1,5 +1,6 @@
 package com.littlepage.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.littlepage.entity.Film;
 import com.littlepage.service.FilmService;
+import com.littlepage.utils.PictureUtil;
 /**
  * 管理员控制器页面
  * @author 74302
@@ -68,6 +70,7 @@ public class AdministratorController {
 	 * @param film
 	 * @param posterLink
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/addFilmSolve")
 	public String addFilmSolve(@RequestParam("name")String name,@RequestParam("posterLink")MultipartFile posterLink,
@@ -75,7 +78,7 @@ public class AdministratorController {
 			@RequestParam("actor")String actor,@RequestParam("type")String type,
 			@RequestParam("location")String location,@RequestParam("language")String language,
 			@RequestParam("releaseDate")String releaseDate,@RequestParam("length")String length,
-			@RequestParam("reflectDate")String reflectDate,Model model) {
+			@RequestParam("reflectDate")String reflectDate,Model model) throws IOException {
 		String result=null;
 		try {
 			Film film=new Film(-1, name, posterLink.getBytes(), director, scriptWriter, actor, type, location, language, releaseDate, length, reflectDate);
@@ -87,6 +90,7 @@ public class AdministratorController {
 			e.printStackTrace();
 		}
 		model.addAttribute("filmAddStat", result);
+		filmService.savePic(posterLink.getBytes());
 		return "/administrator/addFilmFailed";
 	}
 	
@@ -97,7 +101,7 @@ public class AdministratorController {
 	@RequestMapping("/filmInfo")
 	public String filmInfo(@RequestParam("id")int id,Model model) throws IOException {
 		Film tempFilm=filmService.findById(id);
-		String path=filmService.savePic(tempFilm.getPosterLink());
+		String path=PictureUtil.getMD5Site(tempFilm.getPosterLink())+".jpg";
 		model.addAttribute("tempFilmInfo",tempFilm);
 		model.addAttribute("tempPicPath",path);
 		return "/administrator/filmInfo";

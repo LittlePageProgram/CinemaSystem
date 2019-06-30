@@ -9,8 +9,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
+
+import org.apache.tomcat.util.security.MD5Encoder;
+import org.springframework.util.DigestUtils;
+
+import sun.security.rsa.RSASignature.MD5withRSA;
 
 
 /**
@@ -21,11 +27,13 @@ import java.util.Random;
 public class PictureUtil {
 	/**
 	 * 得到随机临时图片地址，默认
+	 * @param posterLink 
 	 * @return
 	 */
-	public static String getRandomSite() {
-		Random random=new Random();
-		return "pic"+random.nextInt(10000000);
+	public static String getMD5Site(byte[] posterLink) {
+		String md5DigestAsHex = DigestUtils.md5DigestAsHex(posterLink);
+		System.out.println(md5DigestAsHex);
+		return "pic"+md5DigestAsHex;
 	}
 	
 	/**

@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.littlepage.entity.Film;
+import com.littlepage.entity.FilmLike;
+import com.littlepage.entity.User;
+import com.littlepage.mapper.FilmLikeMapper;
 import com.littlepage.mapper.FilmMapper;
 import com.littlepage.utils.PictureUtil;
 import com.littlepage.utils.TimeUtils;
@@ -18,6 +21,9 @@ public class FilmService {
 
 	@Autowired
 	FilmMapper filmMapper;
+	
+	@Autowired
+	FilmLikeMapper filmLikeMapper;
 	/**
 	 * 增加电影
 	 * @param film
@@ -82,11 +88,26 @@ public class FilmService {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String savePic(byte[] posterLink) throws IOException {
-		String fileName=PictureUtil.getRandomSite();
-		PictureUtil.save(posterLink, fileName);
+	public String savePic(byte[] posterLink)  {
+		String fileName=PictureUtil.getMD5Site(posterLink);
+		try {
+			PictureUtil.save(posterLink, fileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return fileName+".jpg";
 	}
 
+	/**
+	 * 检测user是否喜欢id的电影,喜欢为true
+	 * @param user
+	 * @param id
+	 * @return
+	 */
+	public boolean testLike(User user, int id) {
+		List<FilmLike> fl=filmLikeMapper.findAll(user.getId(),id);
+		System.out.println(fl);
+		return fl.size()!=0;
+	}
 
 }
