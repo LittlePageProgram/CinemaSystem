@@ -10,7 +10,7 @@ id int primary key auto_increment,
 loginName varchar(255),
 password varchar(255),
 role varchar(255)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;;
 
 insert user values(null,'root','root','administrator');
 insert user values(null,'aa','aa','common');
@@ -32,4 +32,14 @@ language varchar(255),
 releaseDate varchar(255),
 length varchar(255),
 reflectDate varchar(255)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;;
+
+select * from film
+
+CREATE TABLE filmlike  (
+id int primary key auto_increment,
+uid int,
+fid int
 );
+
+
