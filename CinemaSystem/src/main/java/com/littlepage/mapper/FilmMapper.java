@@ -16,7 +16,7 @@ public interface FilmMapper {
 	
 	public List<Film> findAll();
 
-	public Film findById(int id);
+	public List<Film> findById(int id);
 
 	public List<Film> findByName(String name);
 }

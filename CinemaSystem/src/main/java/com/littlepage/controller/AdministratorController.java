@@ -62,11 +62,6 @@ public class AdministratorController {
 		return "/administrator/filmList";
 	}
 	
-	@RequestMapping("/filmInfo")
-	public String filmInfo(@RequestParam("filmInfo")int id) {
-		Film tempFilm=filmService.findById(id);
-		return "/administrator/filmInfo";
-	}
 	
 	/**
 	 * 添加电影
@@ -95,5 +90,17 @@ public class AdministratorController {
 		return "/administrator/addFilmFailed";
 	}
 	
+	/**
+	 * 电影详细信息页面
+	 * @throws IOException 
+	 */
+	@RequestMapping("/filmInfo")
+	public String filmInfo(@RequestParam("id")int id,Model model) throws IOException {
+		Film tempFilm=filmService.findById(id);
+		String path=filmService.savePic(tempFilm.getPosterLink());
+		model.addAttribute("tempFilmInfo",tempFilm);
+		model.addAttribute("tempPicPath",path);
+		return "/administrator/filmInfo";
+	}
 	
 }
