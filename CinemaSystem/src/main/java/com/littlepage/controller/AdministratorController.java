@@ -80,16 +80,19 @@ public class AdministratorController {
 			@RequestParam("actor")String actor,@RequestParam("type")String type,
 			@RequestParam("location")String location,@RequestParam("language")String language,
 			@RequestParam("releaseDate")String releaseDate,@RequestParam("length")String length,
-			@RequestParam("reflectDate")String reflectDate) {
+			@RequestParam("reflectDate")String reflectDate,Model model) {
 		String result=null;
 		try {
 			Film film=new Film(-1, name, posterLink.getBytes(), director, scriptWriter, actor, type, location, language, releaseDate, length, reflectDate);
 			result=filmService.addFilm(film);
+			if(result.equals("success")) {
+				return "/administrator/addFilmSuccess";
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return "/administrator/addFilmSuccess";
+		model.addAttribute("filmAddStat", result);
+		return "/administrator/addFilmFailed";
 	}
 	
 	

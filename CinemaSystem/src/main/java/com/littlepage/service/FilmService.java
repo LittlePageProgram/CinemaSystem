@@ -28,7 +28,7 @@ public class FilmService {
 		 * 判断是否存在
 		 */
 		if(f.size()!=0) {
-			return "filmExists";
+			return "该电影已经存在";
 		}
 		/**
 		 * 格式化时间
@@ -39,6 +39,8 @@ public class FilmService {
 		 * 判断时间和当前时间比
 		 */
 		if(film.getReleaseDate().compareTo(TimeUtils.getCurrentTime())<0) {
+			System.out.println(film.getReleaseDate());
+			System.out.println(TimeUtils.getCurrentTime());
 			return "上映日期应该在当前日期之前";
 		}
 		/**

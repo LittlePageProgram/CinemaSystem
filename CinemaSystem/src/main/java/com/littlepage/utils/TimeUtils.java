@@ -18,9 +18,15 @@ public class TimeUtils {
 	 */
 	public static String getCurrentTime() {
 		Calendar ca=Calendar.getInstance();
-		int year=ca.get(Calendar.YEAR);
-		int month=ca.get(Calendar.MONTH)+1;
-		int day=ca.get(Calendar.DAY_OF_MONTH);
+		String year=ca.get(Calendar.YEAR)+"";
+		String month=ca.get(Calendar.MONTH)+1+"";
+		String day=ca.get(Calendar.DAY_OF_MONTH)+"";
+		if(month.length()==1) {
+			month="0"+month;
+		}
+		if(day.length()==1) {
+			day="0"+day;
+		}
 		return ""+year+"-"+month+"-"+day;
 	}
 	
@@ -35,8 +41,14 @@ public class TimeUtils {
 		String year=matcher.group();
 		matcher.find();
 		String month=matcher.group();
+		if(month.length()==1) {
+			month="0"+month;
+		}
 		matcher.find();
 		String day=matcher.group();
+		if(day.length()==1) {
+			day="0"+day;
+		}
 		return year+"-"+month+"-"+day;
 	}
 }
