@@ -13,7 +13,7 @@
 	
 	<insert id="addFilmLike">
 		INSERT filmlike VALUES
-		(null,#{uid},#{fid})
+		(null,#{uid},#{fid},#{date})
 	</insert>
 	
 	<delete id="deleteFilmLike">
@@ -21,5 +21,8 @@
 		WHERE uid=#{uid} and fid=#{fid}
 	</delete>
 	
+	<select id="filmLikeCount" resultType="com.littlepage.entity.FilmLikeCount">
+		select film.name filmName,count(filmlike.id) count from film,filmlike where filmlike.fid=film.id group by film.name
+	</select>
 </mapper>
 

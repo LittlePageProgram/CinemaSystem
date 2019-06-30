@@ -7,11 +7,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.littlepage.entity.Film;
+import com.littlepage.entity.FilmLikeCount;
+import com.littlepage.service.FilmLikeService;
 import com.littlepage.service.FilmService;
 import com.littlepage.utils.PictureUtil;
 /**
@@ -25,6 +29,9 @@ public class AdministratorController {
 	
 	@Autowired
 	FilmService filmService;
+
+	@Autowired
+	FilmLikeService filmLikeService;
 	
 	/**
 	 * 管理员登录页面
@@ -118,5 +125,33 @@ public class AdministratorController {
 		List<Film> li=filmService.search(search);
 		model.addAttribute("filmList",li);
 		return "/administrator/filmList";
+	}
+	
+	
+	/**
+	 * 图表模块
+	 * @return
+	 */
+	@RequestMapping("/likeGraph")
+	public String likeGraph(@RequestParam("id") int id) {
+		return "/administrator/likeGraph";
+	}
+	
+	/**
+	 * 喜欢人数总计
+	 */
+	@RequestMapping("/likeList")
+	public String likeList(Model model) {
+		List<FilmLikeCount> li=filmLikeService.count();
+		List<Film> liFilm=filmService.findAll();
+		//0人观看添加
+		for (Film film : liFilm) {
+			for (FilmLikeCount film2 : li) {
+				if(film.getName().equals(film2.getFilmName()))break;
+			}
+			li.add(new FilmLikeCount(film.getName(),0));
+		}
+		model.addAttribute("likeList",li);
+		return "/administrator/likeList";
 	}
 }

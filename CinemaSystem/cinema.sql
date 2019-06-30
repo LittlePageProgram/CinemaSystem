@@ -36,10 +36,12 @@ reflectDate varchar(255)
 
 select * from film
 
+
 CREATE TABLE filmlike  (
 id int primary key auto_increment,
 uid int,
-fid int
+fid int,
+time varchar(255)
 );
 
 

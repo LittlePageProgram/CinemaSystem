@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.littlepage.entity.FilmLike;
+import com.littlepage.entity.FilmLikeCount;
 import com.littlepage.entity.User;
 import com.littlepage.mapper.FilmLikeMapper;
 /**
@@ -35,12 +36,16 @@ public class FilmLikeService {
 		return fl;
 	}
 
-	public void addFilmLike(int uid, int fid) {
-		filmLikeMapper.addFilmLike(uid,fid);
+	public void addFilmLike(int uid, int fid, String date) {
+		filmLikeMapper.addFilmLike(uid,fid,date);
 	}
 
 	public void deleteFilmLike(int uid, int fid) {
 		filmLikeMapper.deleteFilmLike(uid,fid);
+	}
+
+	public List<FilmLikeCount> count() {
+		return filmLikeMapper.filmLikeCount();
 	}
 	
 }

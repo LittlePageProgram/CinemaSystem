@@ -16,6 +16,7 @@ import com.littlepage.entity.FilmLike;
 import com.littlepage.entity.User;
 import com.littlepage.service.FilmLikeService;
 import com.littlepage.service.FilmService;
+import com.littlepage.utils.TimeUtils;
 
 import jdk.nashorn.internal.runtime.FindProperty;
 
@@ -66,8 +67,16 @@ public class CommonController {
 		return "/common/filmInfo";
 	}
 	
+	/**
+	 * 喜欢模块
+	 * @param model
+	 * @param id
+	 * @param httpReq
+	 * @return
+	 */
 	@RequestMapping("/like")
 	public String filmInfo(Model model,@RequestParam("id")int id,HttpServletRequest httpReq) {
+		String date=TimeUtils.getCurrentTime();
 		Film tempFilm=filmService.findById(id);
 		String path=filmService.savePic(tempFilm.getPosterLink());
 		model.addAttribute("tempFilmInfo",tempFilm);
@@ -75,7 +84,7 @@ public class CommonController {
 		User user=(User) httpReq.getSession().getAttribute("userInfo");
 		List<FilmLike> liLike=filmLikeService.findAll(user.getId(),id);
 		if(liLike.size()==0) {
-			filmLikeService.addFilmLike(user.getId(),id);//增加
+			filmLikeService.addFilmLike(user.getId(),id,date);//增加
 			model.addAttribute("like","取消喜欢");
 		}else {
 			filmLikeService.deleteFilmLike(user.getId(),id);//移除
@@ -84,6 +93,12 @@ public class CommonController {
 		return "/common/filmInfo";
 	}
 	
+	/**
+	 * 搜索模块
+	 * @param search
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/search")
 	public String search(@RequestParam("search")String search,Model model) {
 		search="%"+search+"%";

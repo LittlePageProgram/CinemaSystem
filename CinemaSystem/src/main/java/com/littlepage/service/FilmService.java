@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.littlepage.entity.Film;
 import com.littlepage.entity.FilmLike;
+import com.littlepage.entity.FilmLikeCount;
 import com.littlepage.entity.User;
 import com.littlepage.mapper.FilmLikeMapper;
 import com.littlepage.mapper.FilmMapper;
@@ -99,6 +100,4 @@ public class FilmService {
 	public List<Film> search(String search) {
 		return filmMapper.searchAll(search);
 	}
-
-	
 }
