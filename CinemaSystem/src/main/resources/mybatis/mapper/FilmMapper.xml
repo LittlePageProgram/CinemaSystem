@@ -35,5 +35,9 @@
 		SELECT * FROM film WHERE location like #{search} union
 		SELECT * FROM film WHERE language like #{search}
 	</select>
+	
+	<select id="findByDate" resultType="com.littlepage.entity.Film">
+		select * from film where #{date} between releasedate and reflectdate
+	</select>
 </mapper>
 

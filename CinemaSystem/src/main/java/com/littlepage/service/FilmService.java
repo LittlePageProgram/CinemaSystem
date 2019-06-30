@@ -97,7 +97,21 @@ public class FilmService {
 		return fileName+".jpg";
 	}
 
+	/**
+	 * 搜索所有有挂search的电影
+	 * @param search
+	 * @return
+	 */
 	public List<Film> search(String search) {
 		return filmMapper.searchAll(search);
+	}
+
+	/**
+	 * 查找符合时间的电影
+	 * @param date
+	 * @return
+	 */
+	public List<Film> findByDate(String date) {
+		return filmMapper.findByDate(date);
 	}
 }

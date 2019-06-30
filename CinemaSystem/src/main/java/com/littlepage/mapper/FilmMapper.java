@@ -21,4 +21,6 @@ public interface FilmMapper {
 	public List<Film> findByName(String name);
 
 	public List<Film> searchAll(String search);
+
+	public List<Film> findByDate(String date);
 }

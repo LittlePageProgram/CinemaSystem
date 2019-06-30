@@ -49,14 +49,17 @@ time varchar(255)
 /**
 电影安排表
 **/
-
 create table filmSchedule(
+id int primary key auto_increment,
 date varchar(255),
 startTime varchar(255),
 endTime varchar(255),
 fid varchar(255),#影片id
 filmRoom varchar(255),#影院
-price varchar(255)#价格
+price varchar(255),#价格
+visiableTimeStart varchar(255),#可见开始时间
+visiableTimeEnd varchar(255),#可见结束时间
+view varchar(255) #视角
 )
 
 
