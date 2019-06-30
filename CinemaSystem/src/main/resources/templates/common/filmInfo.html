@@ -159,6 +159,10 @@
 	   		<td>下映日期</td>
 	   		<td th:text="${tempFilmInfo.reflectDate}">下映日期</td>
 	   	</tr>
+	   	<tr>
+	   		<td>喜欢</td>
+	   		<td><a th:text="${like}" th:href="'/common/like?id='+${tempFilmInfo.id}"></a></td>
+	   	</tr>
 	  </table>
 	</div>
 </html>

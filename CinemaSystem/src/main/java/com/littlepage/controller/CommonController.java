@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.littlepage.entity.Film;
+import com.littlepage.entity.FilmLike;
 import com.littlepage.entity.User;
+import com.littlepage.service.FilmLikeService;
 import com.littlepage.service.FilmService;
+
+import jdk.nashorn.internal.runtime.FindProperty;
 
 /**
  * 普通用户功能页面
@@ -23,8 +27,14 @@ import com.littlepage.service.FilmService;
 @Controller
 @RequestMapping("/common")
 public class CommonController {
+	
+	
 	@Autowired
 	FilmService filmService;
+	
+	@Autowired
+	FilmLikeService filmLikeService;
+	
 	/**
 	 * 电影列表页面
 	 * @return
@@ -47,12 +57,38 @@ public class CommonController {
 		model.addAttribute("tempFilmInfo",tempFilm);
 		model.addAttribute("tempPicPath",path);
 		User user=(User) req.getSession().getAttribute("userInfo");
-//		boolean isLike=filmService.testLike(user,id);
-//		if(isLike){
-//			model.addAttribute("like","喜欢");
-//		}else {
-//			model.addAttribute("like","取消喜欢");
-//		}
+		boolean isLike=filmLikeService.testLike(user,id);
+		if(!isLike){
+			model.addAttribute("like","喜欢");
+		}else {
+			model.addAttribute("like","取消喜欢");
+		}
 		return "/common/filmInfo";
+	}
+	
+	@RequestMapping("/like")
+	public String filmInfo(Model model,@RequestParam("id")int id,HttpServletRequest httpReq) {
+		Film tempFilm=filmService.findById(id);
+		String path=filmService.savePic(tempFilm.getPosterLink());
+		model.addAttribute("tempFilmInfo",tempFilm);
+		model.addAttribute("tempPicPath",path);
+		User user=(User) httpReq.getSession().getAttribute("userInfo");
+		List<FilmLike> liLike=filmLikeService.findAll(user.getId(),id);
+		if(liLike.size()==0) {
+			filmLikeService.addFilmLike(user.getId(),id);//增加
+			model.addAttribute("like","取消喜欢");
+		}else {
+			filmLikeService.deleteFilmLike(user.getId(),id);//移除
+			model.addAttribute("like","喜欢");
+		}
+		return "/common/filmInfo";
+	}
+	
+	@RequestMapping("/search")
+	public String search(@RequestParam("search")String search,Model model) {
+		search="%"+search+"%";
+		List<Film> li=filmService.search(search);
+		model.addAttribute("filmList",li);
+		return "/common/filmList";
 	}
 }

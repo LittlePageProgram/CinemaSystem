@@ -10,5 +10,16 @@
 		uid=#{uid} AND
 		fid=#{fid}
 	</select>
+	
+	<insert id="addFilmLike">
+		INSERT filmlike VALUES
+		(null,#{uid},#{fid})
+	</insert>
+	
+	<delete id="deleteFilmLike">
+		DELETE FROM filmlike
+		WHERE uid=#{uid} and fid=#{fid}
+	</delete>
+	
 </mapper>
 

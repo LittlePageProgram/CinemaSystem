@@ -19,33 +19,21 @@
 	</select>
 	
 	<select id="findById" resultType="com.littlepage.entity.Film">
-		SELECT * FROM film where id=#{id}
+		SELECT * FROM film WHERE id=#{id}
 	</select>
 	
 	<select id="findByName" resultType="com.littlepage.entity.Film">
-		SELECT * FROM film where name=#{name}
-	</select>
-	<!-- 
-	<delete id="deleteUser" parameterType="com.littlepage.mybatis.entity.User">
-		DELETE FROM user
-		WHERE
-		name=#{name}
-	</delete>
-	
-	<update id="updateUser" parameterType="com.littlepage.mybatis.entity.User">
-		UPDATE user SET
-		password=#{password}
-		WHERE
-		name=#{name}
-	</update>
-	
-	<select id="show" resultType="com.littlepage.mybatis.entity.User">
-		SELECT * from user
+		SELECT * FROM film WHERE name=#{name}
 	</select>
 	
-	<select id="selectByExample" resultType="com.littlepage.mybatis.entity.User">
-		SELECT * from user
+	<select id="searchAll" resultType="com.littlepage.entity.Film">
+		SELECT * FROM film WHERE name like #{search} union
+		SELECT * FROM film WHERE director like #{search} union
+		SELECT * FROM film WHERE scriptWriter like #{search} union
+		SELECT * FROM film WHERE actor like #{search} union
+		SELECT * FROM film WHERE type like #{search} union
+		SELECT * FROM film WHERE location like #{search} union
+		SELECT * FROM film WHERE language like #{search}
 	</select>
-	 -->
 </mapper>
 

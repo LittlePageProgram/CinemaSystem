@@ -106,5 +106,17 @@ public class AdministratorController {
 		model.addAttribute("tempPicPath",path);
 		return "/administrator/filmInfo";
 	}
-	
+	/**
+	 * 搜索模块
+	 * @param search
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/search")
+	public String search(@RequestParam("search")String search,Model model) {
+		search="%"+search+"%";
+		List<Film> li=filmService.search(search);
+		model.addAttribute("filmList",li);
+		return "/administrator/filmList";
+	}
 }

@@ -22,8 +22,6 @@ public class FilmService {
 	@Autowired
 	FilmMapper filmMapper;
 	
-	@Autowired
-	FilmLikeMapper filmLikeMapper;
 	/**
 	 * 增加电影
 	 * @param film
@@ -98,16 +96,9 @@ public class FilmService {
 		return fileName+".jpg";
 	}
 
-	/**
-	 * 检测user是否喜欢id的电影,喜欢为true
-	 * @param user
-	 * @param id
-	 * @return
-	 */
-	public boolean testLike(User user, int id) {
-		List<FilmLike> fl=filmLikeMapper.findAll(user.getId(),id);
-		System.out.println(fl);
-		return fl.size()!=0;
+	public List<Film> search(String search) {
+		return filmMapper.searchAll(search);
 	}
 
+	
 }

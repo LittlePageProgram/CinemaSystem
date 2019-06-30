@@ -32,7 +32,6 @@ public class PictureUtil {
 	 */
 	public static String getMD5Site(byte[] posterLink) {
 		String md5DigestAsHex = DigestUtils.md5DigestAsHex(posterLink);
-		System.out.println(md5DigestAsHex);
 		return "pic"+md5DigestAsHex;
 	}
 	

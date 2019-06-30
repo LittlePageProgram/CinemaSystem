@@ -15,5 +15,9 @@ import com.littlepage.entity.FilmLike;
 public interface FilmLikeMapper {
 
 	List<FilmLike> findAll(int uid, int fid);
+
+	void addFilmLike(int uid, int fid);
+
+	void deleteFilmLike(int uid, int fid);
 	
 }

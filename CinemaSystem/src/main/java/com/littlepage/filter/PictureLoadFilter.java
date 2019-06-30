@@ -37,9 +37,7 @@ public class PictureLoadFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		Filter.super.init(filterConfig);
 		List<Film> liFm=fs.findAll();
-		System.out.println(liFm.size());
 		for (Film film : liFm) {
 			fs.savePic(film.getPosterLink());
 		}
