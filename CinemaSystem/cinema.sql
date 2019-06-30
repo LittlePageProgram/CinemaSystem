@@ -36,12 +36,27 @@ reflectDate varchar(255)
 
 select * from film
 
-
+/**
+电影喜好表（逻辑外键）
+**/
 CREATE TABLE filmlike  (
 id int primary key auto_increment,
 uid int,
 fid int,
 time varchar(255)
 );
+
+/**
+电影安排表
+**/
+
+create table filmSchedule(
+date varchar(255),
+startTime varchar(255),
+endTime varchar(255),
+fid varchar(255),#影片id
+filmRoom varchar(255),#影院
+price varchar(255)#价格
+)
 
 
