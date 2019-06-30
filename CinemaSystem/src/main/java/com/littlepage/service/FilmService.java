@@ -84,8 +84,8 @@ public class FilmService {
 	 */
 	public String savePic(byte[] posterLink) throws IOException {
 		String fileName=PictureUtil.getRandomSite();
-		String abosolutePath=PictureUtil.save(posterLink, fileName);
-		return abosolutePath;
+		PictureUtil.save(posterLink, fileName);
+		return fileName+".jpg";
 	}
 
 

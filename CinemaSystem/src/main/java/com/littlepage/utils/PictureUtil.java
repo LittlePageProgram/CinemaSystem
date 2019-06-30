@@ -33,14 +33,12 @@ public class PictureUtil {
 	 * 从数据库读取图片转换到static/tempPic下
 	 * @throws IOException 
 	 */
-	public static String save(byte[] bytePic,String fileName) throws IOException {
+	public static void save(byte[] bytePic,String fileName) throws IOException {
 		String path="src/main/resources/static/tempPic/"+fileName+".jpg";
 		OutputStream os = new FileOutputStream(path);
 		os.write(bytePic, 0, bytePic.length);
 		os.flush();
 		os.close();
-		File file=new File(path);
-		return file.getAbsolutePath();
 	}
 	
 	

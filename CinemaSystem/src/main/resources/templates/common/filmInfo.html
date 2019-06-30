@@ -119,7 +119,8 @@
 	   	</tr>
 	   	<tr>
 	   		<td>海报图片</td>
-	   		<td><img th:src="@{'/tempPic/'+${tempPicPath}}" /></td>
+	   		<td><img th:src="" /></td>
+	   		<td th:text="${tempFilmInfo.posterLink}">海报图片</td>
 	   	</tr>
 	   	<tr>
 	   		<td>导演</td>
