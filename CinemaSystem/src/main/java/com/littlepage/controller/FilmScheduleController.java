@@ -148,5 +148,15 @@ public class FilmScheduleController {
 		return "/administrator/filmSchedule/visiableTimeSolveSuccess";
 	}
 	
+	/**
+	 * 删除排片时间
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("id")String id) {
+		filmScheduleServ.deleteById(id);
+		return "/administrator/filmSchedule/deleteSuccess";
+	}
+	
 	
 }

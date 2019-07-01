@@ -68,4 +68,8 @@ public class FilmScheduleService {
 	public void setStartDateAndEndDate(String id, String startDate, String endDate) {
 		filmScheduleMapper.setStartDateAndEndDate(id,startDate,endDate);
 	}
+
+	public void deleteById(String id) {
+		filmScheduleMapper.deleteById(id);
+	}
 }

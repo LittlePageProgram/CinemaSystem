@@ -38,4 +38,8 @@
  		update filmSchedule set visiabletimestart=#{startDate}
  		,visiabletimeend=#{endDate}   where id=#{id}
  </update>
+ 
+ <delete id="deleteById">
+ 		delete from filmSchedule where id=#{id}
+ </delete>
 </mapper>
