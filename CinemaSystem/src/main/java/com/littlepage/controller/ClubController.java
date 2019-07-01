@@ -9,6 +9,6 @@ public class ClubController {
 
 		@RequestMapping("/buycard")
 		public String buycard() {
-			return "common/club/buycard";
+			return "common/clubcard/buycard";
 		}
 }
