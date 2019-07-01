@@ -33,4 +33,9 @@
  		date>=#{startDate} and date&lt;=#{endDate}
  		and fid=(select id from film where name=#{filmRoom})
  </select>
+ 
+ <update id="setStartDateAndEndDate">
+ 		update filmSchedule set visiabletimestart=#{startDate}
+ 		,visiabletimeend=#{endDate}   where id=#{id}
+ </update>
 </mapper>

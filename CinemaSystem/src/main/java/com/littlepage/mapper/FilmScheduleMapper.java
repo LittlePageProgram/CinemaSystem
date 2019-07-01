@@ -21,4 +21,6 @@ public interface FilmScheduleMapper {
 	List<FilmSchedule> showByFilmRoom(String startDate, String endDate, String filmRoom);
 
 	List<FilmSchedule> showByFilm(String startDate, String endDate, String filmRoom);
+
+	void setStartDateAndEndDate(String id, String startDate, String endDate);
 }

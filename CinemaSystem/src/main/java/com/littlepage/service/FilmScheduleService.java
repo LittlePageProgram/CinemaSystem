@@ -42,22 +42,19 @@ public class FilmScheduleService {
 		if(li.size()!=0) {
 			return false;
 		}
-		//前中后插入30个排班
-		filmSchedule.setView("前排");
-		for(int i=0;i<30;i++) {
-			filmScheduleMapper.addFilmSchedule(filmSchedule);
-		}
-		filmSchedule.setView("中排");
-		for(int i=0;i<30;i++) {
-			filmScheduleMapper.addFilmSchedule(filmSchedule);
-		}
-		filmSchedule.setView("后排");
-		for(int i=0;i<30;i++) {
-			filmScheduleMapper.addFilmSchedule(filmSchedule);
-		}
+		//前中后插入30个座位
+		filmSchedule.setView("30");
+		filmScheduleMapper.addFilmSchedule(filmSchedule);
 		return true;
 	}
-
+	/**
+	 * 展示列表
+	 * @param startDate
+	 * @param endDate
+	 * @param filmRoom
+	 * @param sightView
+	 * @return
+	 */
 	public List<FilmSchedule> showList(String startDate, String endDate, String filmRoom, String sightView) {
 		List<FilmSchedule> list=null;
 		if(sightView.equals("影厅")) {
@@ -66,5 +63,9 @@ public class FilmScheduleService {
 			list=filmScheduleMapper.showByFilm(startDate,endDate,filmRoom);
 		}
 		return list;
+	}
+
+	public void setStartDateAndEndDate(String id, String startDate, String endDate) {
+		filmScheduleMapper.setStartDateAndEndDate(id,startDate,endDate);
 	}
 }

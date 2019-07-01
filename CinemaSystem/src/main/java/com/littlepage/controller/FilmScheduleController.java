@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.littlepage.entity.Film;
 import com.littlepage.entity.FilmSchedule;
@@ -119,12 +120,32 @@ public class FilmScheduleController {
 		List<Film> liFilm=new ArrayList<Film>();
 		List<FilmScheduleShow> lishow=new ArrayList<FilmScheduleShow>();
 		for (FilmSchedule filmSchedule : li) {
-			FilmScheduleShow fss=new FilmScheduleShow(filmSchedule.getFilmroom(), filmService.findById(Integer.parseInt(filmSchedule.getFid())).getName()
+			FilmScheduleShow fss=new FilmScheduleShow(filmSchedule.getId(),filmSchedule.getFilmroom(), filmService.findById(Integer.parseInt(filmSchedule.getFid())).getName()
 					, filmSchedule.getStarttime(), filmSchedule.getEndtime(), filmSchedule.getPrice());
 			lishow.add(fss);
 		}
 		model.addAttribute("filmList",lishow);
 		return "/administrator/filmSchedule/filmScheduleList";
+	}
+	/**
+	 * 设置可见时间页面
+	 * @return
+	 */
+	@RequestMapping("/setVisiableTime")
+	public String setVisiableTime(@RequestParam("id")String id,Model model) {
+		model.addAttribute("id",id);
+		return "/administrator/filmSchedule/setVisiableTime";
+	}
+	
+	
+	/**
+	 * 可见时间解决方案
+	 * @return
+	 */
+	@RequestMapping("/visiableTimeSolve")
+	public String visibleTimeSolve(@RequestParam("startDate")String startDate,@RequestParam("endDate")String endDate,@RequestParam("id")String id){
+		filmScheduleServ.setStartDateAndEndDate(id,startDate,endDate);
+		return "/administrator/filmSchedule/visiableTimeSolveSuccess";
 	}
 	
 	
