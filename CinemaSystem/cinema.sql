@@ -62,4 +62,11 @@ visiableTimeEnd varchar(255),#可见结束时间
 view varchar(255) #视角
 )ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
-
+/**
+会员卡表
+**/
+create table clubCard(
+id int primary key auto_increment,
+uid int,#关联用户表
+price decimal(5,2)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
