@@ -1,5 +1,6 @@
 package com.littlepage.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.littlepage.entity.Film;
 import com.littlepage.entity.FilmSchedule;
+import com.littlepage.entity.FilmScheduleShow;
 import com.littlepage.service.FilmScheduleService;
 import com.littlepage.service.FilmService;
 import com.littlepage.utils.RepeatUtils;
@@ -68,7 +70,11 @@ public class FilmScheduleController {
 	}
 	
 	/**
-	 * 
+	 * 增加排片信息
+	 * @param time
+	 * @param film
+	 * @param price
+	 * @return
 	 */
 	@RequestMapping("/addSchedule")
 	public String addSchedule(@RequestParam("time")String time,@RequestParam("film")String film,@RequestParam("price")String price) {
@@ -83,4 +89,43 @@ public class FilmScheduleController {
 			return "/administrator/filmSchedule/addRepeat";
 		}
 	}
+	/**
+	 * 展示时刻表的条件
+	 * @return
+	 */
+	@RequestMapping("/showFilmSchedule")
+	public String showSchedule() {
+		return "/administrator/filmSchedule/showScheduleChooseView";
+	}
+	
+	/**
+	 * 映射电影安排表
+	 * @param startDate
+	 * @param endDate
+	 * @param filmRoom
+	 * @param sightView
+	 * @return
+	 */
+	@RequestMapping("/filmScheduleList")
+	public String filmScheduleList(@RequestParam("startDate")String startDate,
+			@RequestParam("endDate")String endDate,@RequestParam("filmRoom")String filmRoom,
+			@RequestParam("sightView")String sightView,Model model) {
+		startDate=TimeUtils.formatDate(startDate);
+		endDate=TimeUtils.formatDate(endDate);
+		List<FilmSchedule> li=filmScheduleServ.showList(startDate,endDate,filmRoom,sightView);
+		li=RepeatUtils.repeatSolve(li);
+		System.out.println(li);
+		model.addAttribute("filmScheduleList",li);
+		List<Film> liFilm=new ArrayList<Film>();
+		List<FilmScheduleShow> lishow=new ArrayList<FilmScheduleShow>();
+		for (FilmSchedule filmSchedule : li) {
+			FilmScheduleShow fss=new FilmScheduleShow(filmSchedule.getFilmroom(), filmService.findById(Integer.parseInt(filmSchedule.getFid())).getName()
+					, filmSchedule.getStarttime(), filmSchedule.getEndtime(), filmSchedule.getPrice());
+			lishow.add(fss);
+		}
+		model.addAttribute("filmList",lishow);
+		return "/administrator/filmSchedule/filmScheduleList";
+	}
+	
+	
 }

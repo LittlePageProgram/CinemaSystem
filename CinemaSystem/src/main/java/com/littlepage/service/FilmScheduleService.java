@@ -57,4 +57,14 @@ public class FilmScheduleService {
 		}
 		return true;
 	}
+
+	public List<FilmSchedule> showList(String startDate, String endDate, String filmRoom, String sightView) {
+		List<FilmSchedule> list=null;
+		if(sightView.equals("影厅")) {
+			list=filmScheduleMapper.showByFilmRoom(startDate,endDate,filmRoom);
+		}else {
+			list=filmScheduleMapper.showByFilm(startDate,endDate,filmRoom);
+		}
+		return list;
+	}
 }

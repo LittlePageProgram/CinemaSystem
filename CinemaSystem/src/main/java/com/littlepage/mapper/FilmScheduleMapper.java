@@ -17,4 +17,8 @@ public interface FilmScheduleMapper {
 	void addFilmSchedule(FilmSchedule filmSchedule);
 
 	List<FilmSchedule> findRepeat(FilmSchedule filmSchedule);
+
+	List<FilmSchedule> showByFilmRoom(String startDate, String endDate, String filmRoom);
+
+	List<FilmSchedule> showByFilm(String startDate, String endDate, String filmRoom);
 }

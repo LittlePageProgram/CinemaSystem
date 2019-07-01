@@ -21,4 +21,16 @@
 		#{endtime} between startTime and endTime and
 		date=#{date} 
  </select>
+ 
+ <select id="showByFilmRoom" resultType="com.littlepage.entity.FilmSchedule"  >
+ 		select * from filmSchedule where
+ 		date>=#{startDate} and date&lt;=#{endDate}
+ 		and filmRoom=#{filmRoom}
+ </select>
+ 
+ <select id="showByFilm" resultType="com.littlepage.entity.FilmSchedule"  >
+ 		select * from filmSchedule where
+ 		date>=#{startDate} and date&lt;=#{endDate}
+ 		and fid=(select id from film where name=#{filmRoom})
+ </select>
 </mapper>
