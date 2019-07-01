@@ -6,27 +6,17 @@ import java.io.Serializable;
  * filmSchedule实体类
  * @author 
  */
-public class FilmSchedule implements Serializable {
+public class FilmSchedule implements Serializable{
     private Integer id;
-
     private String date;
-
     private String starttime;
-
     private String endtime;
-
     private String fid;
-
     private String filmroom;
-
     private String price;
-
     private String visiabletimestart;
-
     private String visiabletimeend;
-
     private String view;
-
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -108,4 +98,15 @@ public class FilmSchedule implements Serializable {
     public void setView(String view) {
         this.view = view;
     }
+
+	@Override
+	public String toString() {
+		return "FilmSchedule [id=" + id + ", date=" + date + ", starttime=" + starttime + ", endtime=" + endtime
+				+ ", fid=" + fid + ", filmroom=" + filmroom + ", price=" + price + ", visiabletimestart="
+				+ visiabletimestart + ", visiabletimeend=" + visiabletimeend + ", view=" + view + "]";
+	}
+
+	
+	
+
 }

@@ -31,10 +31,10 @@ public class TimeUtils {
 	}
 	
 	/**
-	 * 格式化时间
+	 * 格式化日期
 	 * @param args
 	 */
-	public static String formatTime(String str) {
+	public static String formatDate(String str) {
 		Pattern pattern = Pattern.compile("\\d+");
 		Matcher matcher=pattern.matcher(str);
 		matcher.find();
@@ -50,5 +50,45 @@ public class TimeUtils {
 			day="0"+day;
 		}
 		return year+"-"+month+"-"+day;
+	}
+	
+	/**
+	 * 获取开始时间
+	 * @param str
+	 * @return
+	 */
+	public static String formatTime(String str) {
+		Pattern pattern=Pattern.compile("\\d+");
+		Matcher matcher=pattern.matcher(str);
+		matcher.find();
+		String hour=matcher.group();
+		matcher.find();
+		String min=matcher.group();
+		if(hour.length()==1) {
+			hour="0"+hour;
+		}
+		if(min.length()==1) {
+			min="0"+min;
+		}
+		return hour+":"+min;
+	}
+	
+	public static String formatEndTime(String str) {
+		Pattern pattern=Pattern.compile("\\d+");
+		Matcher matcher=pattern.matcher(str);
+		matcher.find();
+		String hour=matcher.group();
+		int hourplus=Integer.parseInt(hour);
+		hourplus+=3;
+		hour=""+hourplus;
+		matcher.find();
+		String min=matcher.group();
+		if(hour.length()==1) {
+			hour="0"+hour;
+		}
+		if(min.length()==1) {
+			min="0"+min;
+		}
+		return hour+":"+min;
 	}
 }

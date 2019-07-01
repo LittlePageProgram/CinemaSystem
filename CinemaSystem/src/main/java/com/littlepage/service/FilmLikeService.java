@@ -16,10 +16,9 @@ import com.littlepage.mapper.FilmLikeMapper;
  */
 @Service
 public class FilmLikeService {
-
 	@Autowired
 	FilmLikeMapper filmLikeMapper;
-	
+
 	/**
 	 * 检测user是否喜欢id的电影,喜欢为true
 	 * @param user

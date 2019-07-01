@@ -4,4 +4,21 @@
   <select id="findByDate" resultType="com.littlepage.entity.FilmSchedule">
   		select * from filmSchedule where date=#{date}
   </select>
+  
+  <insert id="addFilmSchedule" parameterType="com.littlepage.entity.FilmSchedule">
+  		insert filmSchedule values(
+  			null,#{date},#{starttime},#{endtime},
+  			#{fid},#{filmroom},#{price},#{visiabletimestart},
+  			#{visiabletimeend},#{view}
+  		)
+  </insert>
+  
+ <select id="findRepeat" resultType="com.littlepage.entity.FilmSchedule" >
+ 		select * from filmSchedule where 
+		#{starttime} between startTime and endTime and
+		date=#{date} union
+		select * from filmSchedule where 
+		#{endtime} between startTime and endTime and
+		date=#{date} 
+ </select>
 </mapper>

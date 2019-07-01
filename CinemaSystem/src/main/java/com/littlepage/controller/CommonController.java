@@ -29,7 +29,6 @@ import jdk.nashorn.internal.runtime.FindProperty;
 @RequestMapping("/common")
 public class CommonController {
 	
-	
 	@Autowired
 	FilmService filmService;
 	

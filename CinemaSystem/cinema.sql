@@ -60,6 +60,6 @@ price varchar(255),#价格
 visiableTimeStart varchar(255),#可见开始时间
 visiableTimeEnd varchar(255),#可见结束时间
 view varchar(255) #视角
-)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 

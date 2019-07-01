@@ -13,4 +13,8 @@ import com.littlepage.entity.FilmSchedule;
 @Mapper
 public interface FilmScheduleMapper {
 	List<FilmSchedule> findByDate(String date);
+
+	void addFilmSchedule(FilmSchedule filmSchedule);
+
+	List<FilmSchedule> findRepeat(FilmSchedule filmSchedule);
 }

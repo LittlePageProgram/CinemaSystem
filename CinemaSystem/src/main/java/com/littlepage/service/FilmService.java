@@ -39,8 +39,8 @@ public class FilmService {
 		/**
 		 * 格式化时间
 		 */
-		film.setReleaseDate(TimeUtils.formatTime(film.getReleaseDate()));
-		film.setReflectDate(TimeUtils.formatTime(film.getReflectDate()));
+		film.setReleaseDate(TimeUtils.formatDate(film.getReleaseDate()));
+		film.setReflectDate(TimeUtils.formatDate(film.getReflectDate()));
 		/**
 		 * 判断时间和当前时间比
 		 */

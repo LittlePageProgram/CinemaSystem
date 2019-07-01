@@ -9,6 +9,11 @@
 
     <!-- Le styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- mdui -->
+    <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
+	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
+	
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <script>
     	function validate(){
@@ -82,38 +87,24 @@
     <div class="container">
     	
 
-      <form class="form-signin" action="addFilmSolve" method="post">
+      <form class="form-signin" action="addSchedule" method="post">
         <h2 class="form-signin-heading" >请选择时间和电影</h2>
         <input type="text" class="input-block-level" placeholder="时间" name="time" id="time">
-        <input type="text" class="input-block-level" placeholder="电影" name="film" id="film">
+        <h4 class="form-signin-heading" >请选择电影:</h4>
+		<div th:each="film:${filmList}"><input type="radio" class="input-block-level" name="film" th:value="${film.name}"/><span th:text="${film.name}"></span></div>
         <input type="text" class="input-block-level" placeholder="票价" name="price" id="price">
         <button class="btn btn-large btn-primary" type="submit" onclick="return validate();">提交</button>
+       	<div th:each="sch:${schedulelist}">
+			<h4 class="form-signin-heading" th:text="${sch.starttime}+'到'+${sch.endtime}+有安排"></h4>
+		</div>
       </form>
     
       <!-- 时间-->
-      <div class="mdui-table-fluid">
-	  <table class="mdui-table">
-	  	<tr>
-	  		<th th:text="${schedule}">aaa</th>
-	  		<th></th>
-	  	</tr>
-	   	<tr th:each="sch:${schedulelist}">
-			<td th:text="${sch.starttime}+'到'+${sch.endtime}+有安排"></td>
-		</tr>
-	  </table>
+	  
 	</div>
-      <!-- 电影列表 -->
-		<div class="mdui-table-fluid">
-	  <table class="mdui-table">
-	   	<tr>
-	   		<th></th>
-	   	</tr>
-	   	<tr >
-			<td ></td>
-		</tr>
-	  </table>
-	</div>
-    </div> <!-- /container -->
+	
+	<!-- /container -->
+    </div> 
 
     <!-- Le javascript
     ================================================== -->
