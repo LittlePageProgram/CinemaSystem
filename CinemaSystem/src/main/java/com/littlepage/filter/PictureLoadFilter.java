@@ -37,9 +37,9 @@ public class PictureLoadFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-//		List<Film> liFm=fs.findAll();
-//		for (Film film : liFm) {
-//			fs.savePic(film.getPosterLink());
-//		}
+		List<Film> liFm=fs.findAll();
+		for (Film film : liFm) {
+			fs.savePic(film.getPosterLink());
+		}
 	}
 }

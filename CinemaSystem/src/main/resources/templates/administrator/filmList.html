@@ -122,6 +122,8 @@
 	   		<th>上映日期</th>
 	   		<th>详细信息</th>
 	   		<th>查看图表</th>
+	   		<th>下架</th>
+	   		<th>修改信息</th>
 	   	</tr>
 	   	<tr th:each="film:${filmList}">
 			<td th:text="${film.name} "></td>
@@ -132,6 +134,8 @@
 			<td th:text="${film.releaseDate}"></td>
 			<td><a th:href="@{filmInfo(id=${film.id})}">链接</a></td>
 			<td><a th:href="@{likeGraph(id=${film.id})}">链接</a></td>
+			<td><a th:href="@{delete(id=${film.id})}">链接</a></td>
+			<td><a th:href="@{modify(id=${film.id})}">链接</a></td>
 		</tr>
 	  </table>
 	</div>

@@ -154,4 +154,34 @@ public class AdministratorController {
 		model.addAttribute("likeList",li);
 		return "/administrator/likeList";
 	}
+	
+	/**
+	 * 删除电影
+	 */
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("id")int id) {
+		filmService.delete(id);
+		return "/administrator/deleteSuccess";
+	}
+	
+	/**
+	 * 修改信息
+	 */
+	@RequestMapping("/modify")
+	public String modify(@RequestParam("id")int id,Model model) {
+		model.addAttribute("id",id);
+		return "/administrator/modifyPage";
+	}
+	/**
+	 * 修改处理
+	 */
+	@RequestMapping("/modifySolve")
+	public String modifySolve(@RequestParam("id")int id,
+			@RequestParam("name")String name,@RequestParam("director")String director,
+			@RequestParam("scriptWriter")String scriptWriter,@RequestParam("actor")String actor,
+			@RequestParam("type")String type,@RequestParam("location")String location,
+			@RequestParam("language")String language) {
+		filmService.modifyFilm(id,name,director,scriptWriter,actor,type,location,language);
+		return "/administrator/modifyPageSuccess";
+	}
 }

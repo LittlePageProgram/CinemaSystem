@@ -25,4 +25,9 @@ public interface FilmMapper {
 	public List<Film> findByDate(String date);
 
 	public void topUp(String price, int userid);
+
+	public void deleteById(int id);
+
+	public void modifyFilmById(int id, String name, String director, String scriptWriter, String actor, String type,
+			String location, String language);
 }

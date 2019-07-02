@@ -39,5 +39,20 @@
 	<select id="findByDate" resultType="com.littlepage.entity.Film">
 		select * from film where #{date} between releasedate and reflectdate
 	</select>
+	
+	<delete id="deleteById">
+		delete from film where id=#{id}
+	</delete>
+	
+	<update id="modifyFilmById">
+		update film set name=#{name},
+		director=#{director},
+		scriptWriter=#{scriptWriter},
+		actor=#{actor},
+		type=#{type},
+		location=#{location},
+		language=#{language}
+		where id=#{id}
+	</update>
 </mapper>
 

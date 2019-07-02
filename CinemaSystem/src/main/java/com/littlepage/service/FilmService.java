@@ -115,5 +115,29 @@ public class FilmService {
 		return filmMapper.findByDate(date);
 	}
 
+	/**
+	 * 删除电影
+	 * @param id
+	 */
+	public void delete(int id) {
+		filmMapper.deleteById(id);
+	}
+
+	/**
+	 * 修改电影
+	 * @param id
+	 * @param name
+	 * @param director
+	 * @param scriptWriter
+	 * @param actor
+	 * @param type
+	 * @param location
+	 * @param language
+	 */
+	public void modifyFilm(int id, String name, String director, String scriptWriter, String actor, String type,
+			String location, String language) {
+		filmMapper.modifyFilmById(id,name,director,scriptWriter,actor,type,location,language);
+	}
+
 
 }

@@ -18,5 +18,7 @@
 	<update id="setBalance">
 		update clubCard set prices=#{price} where uid=#{id}
 	</update>
+	
+	
 </mapper>
 
