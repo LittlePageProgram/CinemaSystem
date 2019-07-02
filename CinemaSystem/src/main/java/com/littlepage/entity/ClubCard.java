@@ -7,14 +7,16 @@ package com.littlepage.entity;
 public class ClubCard {
 	private int id;
 	private int uid;
-	private double price;
+	private String prices;
 	public ClubCard() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public ClubCard(int id, int uid, double price) {
+	public ClubCard(int id, int uid, String prices) {
 		super();
 		this.id = id;
 		this.uid = uid;
-		this.price = price;
+		this.prices = prices;
 	}
 	public int getId() {
 		return id;
@@ -28,14 +30,14 @@ public class ClubCard {
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
-	public double getPrice() {
-		return price;
+	public String getPrices() {
+		return prices;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setPrices(String prices) {
+		this.prices = prices;
 	}
 	@Override
 	public String toString() {
-		return "ClubCard [id=" + id + ", uid=" + uid + ", price=" + price + "]";
+		return "ClubCard [id=" + id + ", uid=" + uid + ", prices=" + prices + "]";
 	}
 }

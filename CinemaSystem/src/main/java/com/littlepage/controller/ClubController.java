@@ -1,13 +1,24 @@
 package com.littlepage.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.littlepage.entity.User;
+import com.littlepage.service.ClubCardService;
 
 @Controller
 @RequestMapping("/club")
 public class ClubController {
+	
+		@Autowired
+		ClubCardService clubCardService;
 
 		/**
 		 * 购买会员卡页面
@@ -43,5 +54,28 @@ public class ClubController {
 			model.addAttribute("price",price);
 			model.addAttribute("payMethod",payMethod);//alipay or wechat pay
 			return "/pay/paymentPage";
+		}
+		
+		/**
+		 * 购买结果页面
+		 * @return
+		 */
+		@RequestMapping("/buyResult")
+		public String buyResult(@RequestParam("price")String price,HttpServletRequest httpReq) {
+			HttpSession session=httpReq.getSession();
+			User user=(User) session.getAttribute("userInfo");
+			clubCardService.addClubInfo(user.getId(),price);
+			return "/pay/buyResultSuccess";
+		}
+		
+		@RequestMapping("/showBalance")
+		public String showBalance(HttpServletRequest httpReq,Model model) {
+			HttpSession httpSession=httpReq.getSession();
+			User user=(User) httpSession.getAttribute("userInfo");
+			int id=user.getId();
+			String balance=clubCardService.getBalanceById(id);
+			model.addAttribute("balance",balance);
+			model.addAttribute("loginName",user.getLoginName());
+			return "/common/clubcard/showBalance";
 		}
 }
