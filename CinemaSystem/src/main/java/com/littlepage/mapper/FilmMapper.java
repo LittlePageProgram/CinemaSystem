@@ -23,4 +23,6 @@ public interface FilmMapper {
 	public List<Film> searchAll(String search);
 
 	public List<Film> findByDate(String date);
+
+	public void topUp(String price, int userid);
 }

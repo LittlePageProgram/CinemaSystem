@@ -32,4 +32,11 @@ public class ClubCardService {
 	public List<ClubCard> queryAllById(int id) {
 		return clubCardMapper.queryAllById(id) ;
 	}
+
+	public void addMoney(String price, int id) {
+		ClubCard cc=clubCardMapper.getBalanceById(id);
+		String s=cc.getPrices();
+		int sum=Integer.parseInt(s)+Integer.parseInt(price);
+		clubCardMapper.setBalance(id,sum+"");
+	}
 }

@@ -65,11 +65,22 @@ public class FilmScheduleService {
 		return list;
 	}
 
+	/**
+	 * 设置开始和结束时间
+	 * @param id
+	 * @param startDate
+	 * @param endDate
+	 */
 	public void setStartDateAndEndDate(String id, String startDate, String endDate) {
 		filmScheduleMapper.setStartDateAndEndDate(id,startDate,endDate);
 	}
 
+	/**
+	 * 通过id删除
+	 * @param id
+	 */
 	public void deleteById(String id) {
 		filmScheduleMapper.deleteById(id);
 	}
+
 }

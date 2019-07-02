@@ -19,5 +19,7 @@ public interface ClubCardMapper {
 
 	List<ClubCard> queryAllById(int id);
 
+	void setBalance(int id, String price);
+
 
 }

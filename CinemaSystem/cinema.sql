@@ -68,5 +68,5 @@ view varchar(255) #视角
 create table clubCard(
 id int primary key auto_increment,
 uid int,#关联用户表
-price varchar(255)
+prices int
 )ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
