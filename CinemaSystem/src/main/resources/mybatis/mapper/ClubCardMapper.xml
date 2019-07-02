@@ -2,23 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.littlepage.mapper.ClubCardMapper">
-	<insert id="addClubCard">
-		insert clubCard values(null,#{id},#{price})
-	</insert>
-	
-	<select id="getBalanceById" resultType="com.littlepage.entity.ClubCard">
-		select * from clubCard where uid=#{id}
-	</select>
-	
-	<select id="queryAllById" resultType="com.littlepage.entity.ClubCard">
-		select * from clubCard where uid=#{id}
-	</select>
-	
-	<update id="setBalance">
-		update clubCard set prices=#{price} where uid=#{id}
-	</update>
-	
-	
+<mapper namespace="com.littlepage.mapper.DiscountMapper">
+
 </mapper>
 

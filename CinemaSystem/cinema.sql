@@ -70,3 +70,14 @@ id int primary key auto_increment,
 uid int,#关联用户表
 prices int
 )ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+/**
+打折表
+**/
+create table discount(
+id int primary key auto_increment,
+discount int,
+startTime varchar(255),
+endTime varchar(255),
+condi int
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
