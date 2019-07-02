@@ -1,5 +1,7 @@
 package com.littlepage.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.littlepage.entity.ClubCard;
@@ -14,5 +16,8 @@ public interface ClubCardMapper {
 	void addClubCard(int id, String price);
 
 	ClubCard getBalanceById(int id);
+
+	List<ClubCard> queryAllById(int id);
+
 
 }

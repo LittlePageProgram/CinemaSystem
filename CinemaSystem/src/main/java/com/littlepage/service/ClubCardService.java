@@ -1,5 +1,7 @@
 package com.littlepage.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,9 @@ public class ClubCardService {
 		ClubCard club=clubCardMapper.getBalanceById(id);
 		System.out.println(id);
 		return club.getPrices()+"";
+	}
+
+	public List<ClubCard> queryAllById(int id) {
+		return clubCardMapper.queryAllById(id) ;
 	}
 }

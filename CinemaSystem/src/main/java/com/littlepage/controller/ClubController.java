@@ -1,5 +1,7 @@
 package com.littlepage.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.littlepage.entity.ClubCard;
 import com.littlepage.entity.User;
 import com.littlepage.service.ClubCardService;
 
@@ -64,6 +67,11 @@ public class ClubController {
 		public String buyResult(@RequestParam("price")String price,HttpServletRequest httpReq) {
 			HttpSession session=httpReq.getSession();
 			User user=(User) session.getAttribute("userInfo");
+			
+			List<ClubCard> li=clubCardService.queryAllById(user.getId());
+			if(li.size()!=0) {
+				return "pay/buyResultFalse";
+			}
 			clubCardService.addClubInfo(user.getId(),price);
 			return "/pay/buyResultSuccess";
 		}

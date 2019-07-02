@@ -10,5 +10,9 @@
 	<select id="getBalanceById" resultType="com.littlepage.entity.ClubCard">
 		select * from clubCard where uid=#{id}
 	</select>
+	
+	<select id="queryAllById" resultType="com.littlepage.entity.ClubCard">
+		select * from clubCard where uid=#{id}
+	</select>
 </mapper>
 
