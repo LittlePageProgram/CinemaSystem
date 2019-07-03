@@ -40,9 +40,8 @@ public class MyTicketController {
 	}
 	
 	@RequestMapping("/dishonour")
-	@ResponseBody
 	public String dishonour(@RequestParam("id")int id) {
 		ticketSeatServ.deleteById(id);
-		return "退票成功";
+		return "common/myticket/dishonour";
 	}
 }
