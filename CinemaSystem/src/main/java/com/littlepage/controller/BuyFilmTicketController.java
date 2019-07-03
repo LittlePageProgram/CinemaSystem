@@ -142,9 +142,8 @@ public class BuyFilmTicketController {
 	 * buyResult第三方支付结果
 	 */
 	@RequestMapping("/buyResult")
-	@ResponseBody
 	public String buyResult(@RequestParam("payMethod")String method,@RequestParam("account")String account,
-			@RequestParam("password")String password,HttpServletRequest httpReq) {
+			@RequestParam("password")String password,HttpServletRequest httpReq,Model model) {
 		
 		String payInfo=null;//支付信息，展示页面
 		
@@ -152,7 +151,9 @@ public class BuyFilmTicketController {
 			//支付成功
 			Ticketseat ticket=(Ticketseat) httpReq.getSession().getAttribute("ticket");
 			ticketSeatServ.addTicketSeat(ticket.getId(), ticket.getFilmScheduleId(),ticket.getSeatNum());
-			return "支付成功";
+			payInfo="支付成功";
+			model.addAttribute("payInfo",payInfo);
+			return "/common/buyTicket/buyResult";
 		}else {
 			//校验账户密码
 			HttpSession sesson=httpReq.getSession();
@@ -163,7 +164,9 @@ public class BuyFilmTicketController {
 			
 			if(!user.getLoginName().equals(account)||!user.getPassword().equals(password)) {
 				//插入信息
-				return "密码不正确";
+				payInfo="支付成功";
+				model.addAttribute("payInfo",payInfo);
+				return "/common/buyTicket/buyResult";
 			}else {
 				//查询ticket价格，查询是否优惠
 				List<FilmSchedule> list=filmScheduleServ.findById(ticket.getId());
@@ -174,22 +177,29 @@ public class BuyFilmTicketController {
 					String price2=clubCardServ.getBalanceById(user.getId());
 					int balance=Integer.parseInt(price2);//会员卡余额
 					if(ticketPrice>balance) {
-						return "余额不足，请尽快充值";
+						payInfo="余额不足，请尽快充值";
+						model.addAttribute("payInfo",payInfo);
+						return "/common/buyTicket/buyResult";
 					}else {
 						//查看是否优惠
 						List<Discount> discountLi=discountServ.findDiscount(ticketPrice);
 						if(discountLi.size()!=0) {
 							if(discountLi.get(0).getCondi()<ticketPrice) {
 								balance-=(ticketPrice-discountLi.get(0).getDiscount());
-								return "购买成功，使用优惠券"+discountLi.get(0).getDiscount();
+								payInfo="购买成功，使用优惠券"+discountLi.get(0).getDiscount();
+								model.addAttribute("payInfo",payInfo);
+								return "/common/buyTicket/buyResult";
 							}
 						}
 						balance-=ticketPrice;
-						return "购买成功";
+						payInfo="购买成功";
+						model.addAttribute("payInfo",payInfo);
+						return "/common/buyTicket/buyResult";
 					}
 					
 				}
-				return "购买成功";
+				payInfo="购买成功";
+				return "/common/buyTicket/buyResult";
 			}
 		}
 	}
