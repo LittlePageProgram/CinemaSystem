@@ -36,6 +36,13 @@ public class CommonController {
 	FilmLikeService filmLikeService;
 	
 	/**
+	 * index页面
+	 */
+	@RequestMapping("/index")
+	public String index() {
+		return "/common/index";
+	}
+	/**
 	 * 电影列表页面
 	 * @return
 	 */

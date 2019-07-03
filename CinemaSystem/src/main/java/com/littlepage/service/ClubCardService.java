@@ -23,9 +23,8 @@ public class ClubCardService {
 	}
 
 	public String getBalanceById(int id) {
-		System.out.println(id);
 		ClubCard club=clubCardMapper.getBalanceById(id);
-		System.out.println(id);
+		System.out.println(club.getPrices());
 		return club.getPrices()+"";
 	}
 

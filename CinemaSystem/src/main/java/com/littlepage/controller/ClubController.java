@@ -86,6 +86,7 @@ public class ClubController {
 			HttpSession httpSession=httpReq.getSession();
 			User user=(User) httpSession.getAttribute("userInfo");
 			int id=user.getId();
+			System.out.println(id+"id");
 			String balance=clubCardService.getBalanceById(id);
 			model.addAttribute("balance",balance);
 			model.addAttribute("loginName",user.getLoginName());

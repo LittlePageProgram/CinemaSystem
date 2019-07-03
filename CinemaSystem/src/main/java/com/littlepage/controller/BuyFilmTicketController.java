@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.littlepage.entity.ClubCard;
+import com.littlepage.entity.Discount;
 import com.littlepage.entity.Film;
 import com.littlepage.entity.FilmSchedule;
 import com.littlepage.entity.Ticketseat;
 import com.littlepage.entity.User;
 import com.littlepage.service.ClubCardService;
+import com.littlepage.service.DiscountService;
 import com.littlepage.service.FilmScheduleService;
 import com.littlepage.service.FilmService;
 import com.littlepage.service.TicketSeatService;
@@ -51,6 +53,25 @@ public class BuyFilmTicketController {
 	ClubCardService clubServ;
 	
 	/**
+	 * 电影服务
+	 */
+	@Autowired
+	FilmService filmServ;
+	
+	/**
+	 * 会员卡服务
+	 */
+	@Autowired
+	ClubCardService clubCardServ;
+	
+	/**
+	 * 优惠服务
+	 */
+	@Autowired
+	DiscountService discountServ;
+	
+	
+	/**
 	 * 买票页面
 	 * @param fid
 	 * @param model
@@ -59,6 +80,7 @@ public class BuyFilmTicketController {
 	@RequestMapping("/chooseSchedule")
 	public String buyFilmTicket(@RequestParam("id")int fid,Model model,HttpServletRequest httpReq) {
 		List<FilmSchedule> li=filmScheduleServ.findById(fid);
+		model.addAttribute("filmScheduleList",li);
 		return "/common/buyTicket/chooseSchedule";
 	}
 	
@@ -123,6 +145,9 @@ public class BuyFilmTicketController {
 	@ResponseBody
 	public String buyResult(@RequestParam("payMethod")String method,@RequestParam("account")String account,
 			@RequestParam("password")String password,HttpServletRequest httpReq) {
+		
+		String payInfo=null;//支付信息，展示页面
+		
 		if(method.equals("支付宝")||method.equals("微信")) {
 			//支付成功
 			Ticketseat ticket=(Ticketseat) httpReq.getSession().getAttribute("ticket");
@@ -132,23 +157,39 @@ public class BuyFilmTicketController {
 			//校验账户密码
 			HttpSession sesson=httpReq.getSession();
 			User user=(User)sesson.getAttribute("userInfo");
+			//从session获取ticket的信息
+			Ticketseat ticket=(Ticketseat) httpReq.getSession().getAttribute("ticket");
+			//使用ticket获取票价
+			
 			if(!user.getLoginName().equals(account)||!user.getPassword().equals(password)) {
 				//插入信息
 				return "密码不正确";
 			}else {
-				Ticketseat ticket=(Ticketseat) httpReq.getSession().getAttribute("ticket");
 				//查询ticket价格，查询是否优惠
-				String s=(String) httpReq.getSession().getAttribute("ticketPrice");
-				int ticketPrice=Integer.parseInt(s);//ticket价格
-				String s2=clubServ.getBalanceById(user.getId());
-				int balance=Integer.parseInt(s2);
-				if(balance>=ticketPrice) {
-					balance-=ticketPrice;
-					clubServ.addClubInfo(user.getId(), balance+"");
-					ticketSeatServ.addTicketSeat(ticket.getId(), ticket.getFilmScheduleId(),ticket.getSeatNum());
-					return "支付成功";
+				List<FilmSchedule> list=filmScheduleServ.findById(ticket.getId());
+				if(list.size()!=0) {
+					FilmSchedule filmSchedule=list.get(0);
+					String price=filmSchedule.getPrice();
+					int ticketPrice=Integer.parseInt(price);//票价
+					String price2=clubCardServ.getBalanceById(user.getId());
+					int balance=Integer.parseInt(price2);//会员卡余额
+					if(ticketPrice>balance) {
+						return "余额不足，请尽快充值";
+					}else {
+						//查看是否优惠
+						List<Discount> discountLi=discountServ.findDiscount(ticketPrice);
+						if(discountLi.size()!=0) {
+							if(discountLi.get(0).getCondi()<ticketPrice) {
+								balance-=(ticketPrice-discountLi.get(0).getDiscount());
+								return "购买成功，使用优惠券"+discountLi.get(0).getDiscount();
+							}
+						}
+						balance-=ticketPrice;
+						return "购买成功";
+					}
+					
 				}
-				return "余额不足，请充值";
+				return "购买成功";
 			}
 		}
 	}

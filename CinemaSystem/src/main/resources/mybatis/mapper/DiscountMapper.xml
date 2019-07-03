@@ -7,5 +7,9 @@
 		insert discount values(null,#{discount},
 		#{startTime},#{endTime},#{condi})
 	</insert>
+	
+	<select id="findDiscount">
+		select * from discount where time between startTime and endTime and condi&lt;ticketPrice
+	</select>
 </mapper>
 
