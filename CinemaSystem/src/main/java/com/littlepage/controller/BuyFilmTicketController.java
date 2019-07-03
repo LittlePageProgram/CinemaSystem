@@ -57,11 +57,8 @@ public class BuyFilmTicketController {
 	 * @return
 	 */
 	@RequestMapping("/chooseSchedule")
-	@ResponseBody
 	public String buyFilmTicket(@RequestParam("id")int fid,Model model,HttpServletRequest httpReq) {
 		List<FilmSchedule> li=filmScheduleServ.findById(fid);
-		httpReq.getSession().setAttribute("ticketPrice", li.get(0).getPrice());
-		model.addAttribute("filmScheduleList",li);
 		return "/common/buyTicket/chooseSchedule";
 	}
 	
