@@ -13,4 +13,8 @@ public interface TicketseatMapper {
 
 	void addTicketSeat(int id,int sid, int seatNum);
 
+	List<Ticketseat> findAllId(int id);
+
+	void deleteById(int id);
+
 }

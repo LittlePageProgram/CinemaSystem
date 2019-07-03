@@ -94,4 +94,13 @@ public class FilmScheduleService {
 		return li;
 	}
 
+	/**
+	 * 通过id查询电影安排
+	 * @param id
+	 * @return
+	 */
+	public List<FilmSchedule> findByFilmScheduleId(int id) {
+		return filmScheduleMapper.findByFilmScheduleId(id);
+	}
+
 }

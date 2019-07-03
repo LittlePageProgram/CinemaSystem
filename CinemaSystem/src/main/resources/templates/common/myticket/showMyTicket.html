@@ -112,26 +112,34 @@
       </div>
 	</body>
 	<div class="mdui-table-fluid">
-	  <table class="mdui-table" th:each="fs:${filmList}">
+	  <table class="mdui-table" th:each="fs:${myticket}">
 	   	<tr>
 	   		<td>影厅名</td>
-	   		<td th:text="${fs.filmroom}"></td>
-	   	</tr>
-	   	<tr>
-	   		<td>影片名</td>
 	   		<td th:text="${fs.name}"></td>
 	   	</tr>
 	   	<tr>
-	   		<td>放映开始时间</td>
+	   		<td>价格</td>
+	   		<td th:text="${fs.price}"></td>
+	   	</tr>
+	   	<tr>
+	   		<td>影院</td>
+	   		<td th:text="${fs.filmroom}"></td>
+	   	</tr>
+	   	<tr>
+	   		<td>日期</td>
+	   		<td th:text="${fs.date}"></td>
+	   	</tr>
+	   	<tr>
+	   		<td>开始时间</td>
 	   		<td th:text="${fs.starttime}"></td>
 	   	</tr>
 	   	<tr>
-	   		<td>放映结束时间</td>
+	   		<td>结束时间</td>
 	   		<td th:text="${fs.endtime}"></td>
 	   	</tr>
 	   	<tr>
-	   		<td>票价</td>
-	   		<td th:text="${fs.price}"></td>
+	   		<td>退票</td>
+	   		<td><a th:href="'dishonour?id='+${fs.id}">链接</a></td>
 	   	</tr><br/>
 	  </table>
 	</div>

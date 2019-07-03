@@ -27,4 +27,6 @@ public interface FilmScheduleMapper {
 	void deleteById(String id);
 
 	List<FilmSchedule> findById(int fid,String date);
+
+	List<FilmSchedule> findByFilmScheduleId(int id);
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.littlepage.mapper.MyTicketMapper">
+
+	<select id="getAllById"  resultType="com.littlepage.entity.ShowTicket">
+		select ticketseat.id,date,startTime,endTime,fid,filmRoom,price,seatNum,film.name from 
+		filmSchedule,ticketseat,film where ticketseat.id=#{id}  and film.id=filmSchedule.fid
+		and ticketseat.filmScheduleId=filmSchedule.id
+	</select>
+	
+</mapper>
+

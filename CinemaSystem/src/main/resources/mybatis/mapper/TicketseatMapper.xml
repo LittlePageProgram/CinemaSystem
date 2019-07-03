@@ -10,5 +10,14 @@
 	<insert id="addTicketSeat">
 		insert ticketseat values(#{id},#{sid},#{seatNum})
 	</insert>
+	
+	<select id="findAllId">
+		select * from ticketseat where id=#{id}
+	</select>
+	
+	<delete id="deleteById">
+		delete from ticketseat where id =#{id}
+	</delete>
+	
 </mapper>
 
