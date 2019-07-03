@@ -9,6 +9,7 @@ import com.littlepage.entity.Film;
 import com.littlepage.entity.FilmSchedule;
 import com.littlepage.mapper.FilmMapper;
 import com.littlepage.mapper.FilmScheduleMapper;
+import com.littlepage.utils.TimeUtils;
 
 @Service
 public class FilmScheduleService {
@@ -81,6 +82,16 @@ public class FilmScheduleService {
 	 */
 	public void deleteById(String id) {
 		filmScheduleMapper.deleteById(id);
+	}
+
+	/**
+	 * 通过id查询电影排班，并且在可见范围内
+	 * @param fid
+	 */
+	public List<FilmSchedule> findById(int fid) {
+		String date=TimeUtils.getCurrentTime();
+		List<FilmSchedule> li=filmScheduleMapper.findById(fid,date);
+		return li;
 	}
 
 }

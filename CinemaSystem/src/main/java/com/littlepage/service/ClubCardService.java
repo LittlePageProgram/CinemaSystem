@@ -37,6 +37,7 @@ public class ClubCardService {
 		ClubCard cc=clubCardMapper.getBalanceById(id);
 		String s=cc.getPrices();
 		int sum=Integer.parseInt(s)+Integer.parseInt(price);
-		clubCardMapper.setBalance(id,sum+"");
+		clubCardMapper.setBalance(id,""+sum);
+		System.out.println(id +" "+sum);
 	}
 }

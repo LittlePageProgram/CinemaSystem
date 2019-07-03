@@ -25,4 +25,6 @@ public interface FilmScheduleMapper {
 	void setStartDateAndEndDate(String id, String startDate, String endDate);
 
 	void deleteById(String id);
+
+	List<FilmSchedule> findById(int fid,String date);
 }

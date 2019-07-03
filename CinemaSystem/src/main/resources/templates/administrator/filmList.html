@@ -93,18 +93,18 @@
 	      </div>
 	    </nav>
 		<div class="container">
-      <div class="masthead">
+       <div class="masthead">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/administrator/index">Home</a></li>
                 <li><a href="/administrator/addFilm">ReleaseFilm</a></li>
                 <li><a href="/administrator/filmList">FilmList</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Others</a></li>
+                <li><a href="/administrator/likeList">LikeList</a></li>
+                <li><a href="/filmSchedule/addFilmSchedule">AddFilmSchedule</a></li>
+                <li><a href="/filmSchedule/showFilmSchedule">ShowSchedule</a></li>
+                <li><a href="/discount/addDiscountCondition">Discount</a></li>
               </ul>
             </div>
           </div>
@@ -121,7 +121,6 @@
 	   		<th>导演</th>
 	   		<th>上映日期</th>
 	   		<th>详细信息</th>
-	   		<th>查看图表</th>
 	   		<th>下架</th>
 	   		<th>修改信息</th>
 	   	</tr>
@@ -133,7 +132,6 @@
 			<td th:text="${film.director}"></td>
 			<td th:text="${film.releaseDate}"></td>
 			<td><a th:href="@{filmInfo(id=${film.id})}">链接</a></td>
-			<td><a th:href="@{likeGraph(id=${film.id})}">链接</a></td>
 			<td><a th:href="@{delete(id=${film.id})}">链接</a></td>
 			<td><a th:href="@{modify(id=${film.id})}">链接</a></td>
 		</tr>

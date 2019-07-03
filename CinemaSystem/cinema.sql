@@ -81,3 +81,13 @@ startTime varchar(255),
 endTime varchar(255),
 condi int
 )ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+
+/**
+电影座位表
+**/
+create table ticketseat(
+id int,#id是user的id
+filmScheduleId int,
+seatNum int
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;

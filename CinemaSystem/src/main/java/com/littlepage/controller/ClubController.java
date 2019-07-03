@@ -75,7 +75,12 @@ public class ClubController {
 			clubCardService.addClubInfo(user.getId(),price);
 			return "/pay/buyResultSuccess";
 		}
-		
+		/**
+		 * 余额页面
+		 * @param httpReq
+		 * @param model
+		 * @return
+		 */
 		@RequestMapping("/showBalance")
 		public String showBalance(HttpServletRequest httpReq,Model model) {
 			HttpSession httpSession=httpReq.getSession();

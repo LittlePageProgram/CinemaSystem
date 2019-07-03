@@ -114,24 +114,22 @@
 	<div class="mdui-table-fluid">
 	  <table class="mdui-table">
 	   	<tr>
-	   		<th>名称</th>
-	   		<th>主演</th>
-	   		<th>类型</th>
-	   		<th>语言</th>
-	   		<th>导演</th>
-	   		<th>上映日期</th>
-	   		<th>详细信息</th>
-	   		<th>购买</th>
+	   		<th>日期</th>
+	   		<th>开始时间</th>
+	   		<th>结束时间</th>
+	   		<th>影厅</th>
+	   		<th>价格</th>
+	   		<th>座位数量</th>
+	   		<th>选座</th>
 	   	</tr>
-	   	<tr th:each="film:${filmList}">
-			<td th:text="${film.name} "></td>
-			<td th:text="${film.actor}"></td>
-			<td th:text="${film.type}"></td>
-			<td th:text="${film.language}"></td>
-			<td th:text="${film.director}"></td>
-			<td th:text="${film.releaseDate}"></td>
-			<td><a th:href="@{filmInfo(id=${film.id})}">链接</a></td>
-	   		<th><a th:href="@{/buyFilmTicketController/chooseSchedule(id=${film.id})}">购买</a></th>
+	   	<tr th:each="filmSchedule:${filmScheduleList}">
+			<td th:text="${filmSchedule.date} "></td>
+			<td th:text="${filmSchedule.starttime} "></td>
+			<td th:text="${filmSchedule.endtime} "></td>
+			<td th:text="${filmSchedule.filmroom} "></td>
+			<td th:text="${filmSchedule.price} "></td>
+			<td th:text="${filmSchedule.view} "></td>
+	   		<th><a th:href="@{/buyFilmTicketController/chooseSeat(id=${filmSchedule.id})}">选座</a></th>
 		</tr>
 	  </table>
 	</div>

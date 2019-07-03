@@ -8,7 +8,27 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <script>
+    	function validate(){
+    		var name=document.getElementById("name").value;
+    		var director=document.getElementById("director").value;
+    		var scriptWriter=document.getElementById("scriptWriter").value;
+    		var actor=document.getElementById("actor").value;
+    		var type=document.getElementById("type").value;
+    		var location=document.getElementById("location").value;
+    		var language=document.getElementById("language").value;
+    		var releaseDate=document.getElementById("releaseDate").value;
+    		var length=document.getElementById("length").value;
+    		var reflectDate=document.getElementById("reflectDate").value;
+    		
+    		if(name==''||director==''||scriptWriter==''||actor==''||type==''||location==''||language==''||releaseDate==''||length==''||reflectDate==''){
+    			alert('输入不能为空');
+    			return false;
+    		}
+    	}
+    </script>
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -43,16 +63,6 @@
 
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <script type="text/javascript">
-    	function validate(){
-    		var username=document.getElementById("username").value;
-    		var password=document.getElementById("password").value;
-    		if(username==''||password==''||passwordReap==''){
-    			alert('您有未填写的项');
-    			return false;
-    		}
-    	}
-    </script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -70,13 +80,14 @@
   <body>
 
     <div class="container">
-
-      <form class="form-signin" method="post" action="buyResult">
-        <h2 class="form-signin-heading" th:text="${payMethod}+'支付（模拟第三方接口）'"></h2>
-        <input type="hidden" name="price" th:value="${price}">
-        <input type="text" class="input-block-level" placeholder="账户"/>
-        <input type="password" class="input-block-level" placeholder="密码"/>
-        <button class="btn btn-large btn-primary" type="submit" onclick="return validate();">购买</button>
+      <form class="form-signin" action="seatSolve" method="post">
+        <h2 class="form-signin-heading" >请选择座位:</h2><br/>
+        <div th:each="seat:${hasSeat}">
+        	<h4 class="form-signin-heading" th:text="${seat.seatNum}+'已被选择'"></h3><br/>
+        </div>
+        <input type="hidden" name="id" th:value="${id}">
+        <input type="text" class="input-block-level" placeholder="座位号(1-30)" name="seatNum" id="seatNum">
+        <button class="btn btn-large btn-primary" type="submit" onclick="return validate();">提交</button>
       </form>
 
     </div> <!-- /container -->
@@ -97,6 +108,5 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
-
   </body>
 </html>

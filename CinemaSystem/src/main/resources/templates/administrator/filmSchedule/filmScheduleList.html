@@ -92,25 +92,24 @@
 	        </form>
 	      </div>
 	    </nav>
-		<div class="container">
-      <div class="masthead">
+	<div class="container">
+       <div class="masthead">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/administrator/index">Home</a></li>
                 <li><a href="/administrator/addFilm">ReleaseFilm</a></li>
                 <li><a href="/administrator/filmList">FilmList</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Others</a></li>
+                <li><a href="/administrator/likeList">LikeList</a></li>
+                <li><a href="/filmSchedule/addFilmSchedule">AddFilmSchedule</a></li>
+                <li><a href="/filmSchedule/showFilmSchedule">ShowSchedule</a></li>
+                <li><a href="/discount/addDiscountCondition">Discount</a></li>
               </ul>
             </div>
           </div>
         </div><!-- /.navbar -->
       </div>
-	</body>
 	<div class="mdui-table-fluid">
 	  <table class="mdui-table" th:each="fs:${filmList}">
 	   	<tr>

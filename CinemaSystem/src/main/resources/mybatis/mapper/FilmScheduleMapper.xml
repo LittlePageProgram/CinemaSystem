@@ -42,4 +42,8 @@
  <delete id="deleteById">
  		delete from filmSchedule where id=#{id}
  </delete>
+ 
+ <select id="findById" resultType="com.littlepage.entity.FilmSchedule" >
+ 		select * from filmSchedule where fid=#{fid} and #{date} between visiableTimeStart and visiableTimeEnd
+ </select>
 </mapper>
