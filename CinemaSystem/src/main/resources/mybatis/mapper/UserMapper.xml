@@ -21,5 +21,13 @@
 	<select id="showAllUser" resultType="com.littlepage.entity.User">
 		select * from user where role!='administrator'
 	</select>
+	
+	<update id="modifyIdentify">
+		update user set role=#{identify} where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from user where id=#{id}
+	</delete>
 </mapper>
 

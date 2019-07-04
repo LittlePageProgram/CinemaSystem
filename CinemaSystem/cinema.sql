@@ -91,3 +91,19 @@ id int,#id是user的id
 filmScheduleId int,
 seatNum int
 )ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+/**
+影院信息
+**/
+create table filmRoom(
+id int primary key auto_increment,
+seatInfo varchar(255),
+name varchar(255)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/**
+充值信息表
+**/
+create table topup(
+id int primary key auto_increment,#用户id
+info varchar(255)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;

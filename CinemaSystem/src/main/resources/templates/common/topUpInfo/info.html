@@ -86,25 +86,25 @@
 	</head>
 	<body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-	        <form class="form-inline my-2 my-lg-0" id="head" method="post" action="search">
-	          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+	        <form class="form-inline my-2 my-lg-0" id="head">
+	          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
 	          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	        </form>
 	      </div>
 	    </nav>
 		<div class="container">
-       <div class="masthead">
+      <div class="masthead">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class="active"><a href="/administrator/index">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
                 <li><a href="/administrator/addFilm">ReleaseFilm</a></li>
                 <li><a href="/administrator/filmList">FilmList</a></li>
-                <li><a href="/administrator/likeList">LikeList</a></li>
-                <li><a href="/filmSchedule/addFilmSchedule">AddFilmSchedule</a></li>
-                <li><a href="/filmSchedule/showFilmSchedule">ShowSchedule</a></li>
-                <li><a href="/discount/addDiscountCondition">Discount</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Others</a></li>
               </ul>
             </div>
           </div>
@@ -112,19 +112,10 @@
       </div>
 	</body>
 	<div class="mdui-table-fluid">
-	  <table class="mdui-table">
+	  <table class="mdui-table" th:each="info:${topInfo}">
 	   	<tr>
-	   		<th>用户名</th>
-	   		<th>角色</th>
-	   		<th>修改类型</th>
-	   		<th>删除</th>
+	   		<td th:text="${info.info}"></td>
 	   	</tr>
-	   	<tr th:each="user:${userList}">
-			<td th:text="${user.loginName} "></td>
-			<td th:text="${user.role}"></td>
-			<td><a th:href="@{modify(id=${user.id})}">链接</a></td>
-			<td><a th:href="@{delete(id=${user.id})}">链接</a></td>
-		</tr>
 	  </table>
 	</div>
 </html>

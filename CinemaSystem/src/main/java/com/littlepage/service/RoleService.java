@@ -18,4 +18,12 @@ public class RoleService {
 		return userMapper.showAllUser();
 	}
 
+	public void modifyIdentify(int id, String identify) {
+		userMapper.modifyIdentify(id,identify);
+	}
+
+	public void delete(int id) {
+		userMapper.delete(id);
+	}
+
 }

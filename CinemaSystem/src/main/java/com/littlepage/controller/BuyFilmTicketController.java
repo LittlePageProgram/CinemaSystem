@@ -1,6 +1,5 @@
 package com.littlepage.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.littlepage.entity.ClubCard;
 import com.littlepage.entity.Discount;
-import com.littlepage.entity.Film;
 import com.littlepage.entity.FilmSchedule;
 import com.littlepage.entity.Ticketseat;
 import com.littlepage.entity.User;

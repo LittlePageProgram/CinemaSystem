@@ -114,16 +114,16 @@
 	<div class="mdui-table-fluid">
 	  <table class="mdui-table">
 	   	<tr>
-	   		<th>用户名</th>
-	   		<th>角色</th>
-	   		<th>修改类型</th>
+	   		<th>名称</th>
+	   		<th>座位信息</th>
+	   		<th>修改</th>
 	   		<th>删除</th>
 	   	</tr>
-	   	<tr th:each="user:${userList}">
-			<td th:text="${user.loginName} "></td>
-			<td th:text="${user.role}"></td>
-			<td><a th:href="@{modify(id=${user.id})}">链接</a></td>
-			<td><a th:href="@{delete(id=${user.id})}">链接</a></td>
+	   	<tr th:each="filmRoom:${filmRoomLi}">
+			<td th:text="${filmRoom.name} "></td>
+			<td th:text="${filmRoom.seatInfo} "></td>
+			<td><a th:href="@{modify(id=${filmRoom.id})}">链接</a></td>
+			<td><a th:href="@{delete(id=${filmRoom.id})}">链接</a></td>
 		</tr>
 	  </table>
 	</div>

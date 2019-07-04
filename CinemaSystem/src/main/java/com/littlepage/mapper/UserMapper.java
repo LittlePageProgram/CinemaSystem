@@ -17,4 +17,8 @@ public interface UserMapper {
 	public void addUser(User user);
 
 	public List<User> showAllUser();
+
+	public void modifyIdentify(int id, String identify);
+
+	public void delete(int id);
 }

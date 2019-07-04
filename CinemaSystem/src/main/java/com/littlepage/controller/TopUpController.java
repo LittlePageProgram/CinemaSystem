@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.littlepage.entity.User;
 import com.littlepage.service.ClubCardService;
 import com.littlepage.service.FilmScheduleService;
+import com.littlepage.service.TopUpService;
+import com.littlepage.utils.TimeUtils;
 /**
  * 充值功能
  * @author 74302
@@ -25,6 +27,9 @@ public class TopUpController {
 	
 	@Autowired
 	ClubCardService clubCardServ;
+	
+	@Autowired
+	TopUpService topUpServ;
 	
 	@RequestMapping("/firstPage")
 	public String topUp() {
@@ -48,6 +53,8 @@ public class TopUpController {
 	public String top(@RequestParam("price")String price,HttpServletRequest httpReq) {
 		User user=(User) httpReq.getSession().getAttribute("userInfo");
 		clubCardServ.addMoney(price,user.getId());
+		String date=TimeUtils.getCurrentTime();
+		topUpServ.addInfo(user.getId(),date+" 充值"+price+"元");
 		return "/pay/topUpSuccess";
 	}
 }
