@@ -16,10 +16,12 @@ import com.littlepage.entity.FilmSchedule;
 import com.littlepage.entity.Ticketseat;
 import com.littlepage.entity.User;
 import com.littlepage.service.ClubCardService;
+import com.littlepage.service.CustomerlogService;
 import com.littlepage.service.DiscountService;
 import com.littlepage.service.FilmScheduleService;
 import com.littlepage.service.FilmService;
 import com.littlepage.service.TicketSeatService;
+import com.littlepage.utils.TimeUtils;
 
 /**
  * 购买电影票
@@ -66,6 +68,11 @@ public class BuyFilmTicketController {
 	@Autowired
 	DiscountService discountServ;
 	
+	/**
+	 *购买信息服务
+	 */
+	@Autowired
+	CustomerlogService customerlogServ;
 	
 	/**
 	 * 买票页面
@@ -147,6 +154,15 @@ public class BuyFilmTicketController {
 			//支付成功
 			Ticketseat ticket=(Ticketseat) httpReq.getSession().getAttribute("ticket");
 			ticketSeatServ.addTicketSeat(ticket.getId(), ticket.getFilmScheduleId(),ticket.getSeatNum());
+			//插入购买信息
+			List<FilmSchedule> list=filmScheduleServ.findByFilmScheduleId(ticket.getFilmScheduleId());
+			System.out.println(list+"list");
+			String s=list.get(0).getPrice();
+			String time=TimeUtils.getCurrentTime();
+			s=time+"消费"+s+"元";
+			User user=(User) httpReq.getSession().getAttribute("userInfo");
+			customerlogServ.add(user.getId(),s);
+			//
 			payInfo="支付成功";
 			model.addAttribute("payInfo",payInfo);
 			return "/common/buyTicket/buyResult";
@@ -159,13 +175,20 @@ public class BuyFilmTicketController {
 			//使用ticket获取票价
 			
 			if(!user.getLoginName().equals(account)||!user.getPassword().equals(password)) {
-				//插入信息
+				//插入购买信息
+				List<FilmSchedule> list=filmScheduleServ.findByFilmScheduleId(ticket.getFilmScheduleId());
+				System.out.println(list+"list");
+				String s=list.get(0).getPrice();
+				String time=TimeUtils.getCurrentTime();
+				s=time+"消费"+s+"元";
+				customerlogServ.add(user.getId(),s);
+				//
 				payInfo="支付成功";
 				model.addAttribute("payInfo",payInfo);
 				return "/common/buyTicket/buyResult";
 			}else {
 				//查询ticket价格，查询是否优惠
-				List<FilmSchedule> list=filmScheduleServ.findById(ticket.getId());
+				List<FilmSchedule> list=filmScheduleServ.findByFilmScheduleId(ticket.getFilmScheduleId());
 				if(list.size()!=0) {
 					FilmSchedule filmSchedule=list.get(0);
 					String price=filmSchedule.getPrice();
@@ -182,6 +205,13 @@ public class BuyFilmTicketController {
 						if(discountLi.size()!=0) {
 							if(discountLi.get(0).getCondi()<ticketPrice) {
 								balance-=(ticketPrice-discountLi.get(0).getDiscount());
+								//插入购买信息
+								System.out.println(list+"list");
+								String s=list.get(0).getPrice();
+								String time=TimeUtils.getCurrentTime();
+								s=time+"消费"+s+"元";
+								customerlogServ.add(user.getId(),s);
+								//
 								payInfo="购买成功，使用优惠券"+discountLi.get(0).getDiscount();
 								model.addAttribute("payInfo",payInfo);
 								return "/common/buyTicket/buyResult";
@@ -190,10 +220,25 @@ public class BuyFilmTicketController {
 						balance-=ticketPrice;
 						payInfo="购买成功";
 						model.addAttribute("payInfo",payInfo);
+						
+						
+						//插入购买信息
+						System.out.println(list+"list");
+						String s=list.get(0).getPrice();
+						String time=TimeUtils.getCurrentTime();
+						s=time+"消费"+s+"元";
+						customerlogServ.add(user.getId(),s);
+						//
 						return "/common/buyTicket/buyResult";
 					}
-					
 				}
+				//插入购买信息
+				System.out.println(list+"list");
+				String s=list.get(0).getPrice();
+				String time=TimeUtils.getCurrentTime();
+				s=time+"消费"+s+"元";
+				customerlogServ.add(user.getId(),s);
+				//
 				payInfo="购买成功";
 				return "/common/buyTicket/buyResult";
 			}

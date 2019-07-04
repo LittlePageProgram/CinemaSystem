@@ -107,3 +107,10 @@ create table topup(
 id int primary key auto_increment,#用户id
 info varchar(255)
 )ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/**
+消费记录
+**/
+create table customerlog(
+id int primary key auto_increment,
+info varchar(255)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;

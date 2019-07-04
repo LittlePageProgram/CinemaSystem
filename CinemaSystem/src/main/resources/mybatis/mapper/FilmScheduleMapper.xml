@@ -46,4 +46,8 @@
  <select id="findById" resultType="com.littlepage.entity.FilmSchedule" >
  		select * from filmSchedule where fid=#{fid} and #{date} between visiableTimeStart and visiableTimeEnd
  </select>
+ 
+ <select id="findByFilmScheduleId" resultType="com.littlepage.entity.FilmSchedule">
+ 	select * from filmSchedule where id=#{id}
+ </select>
 </mapper>
