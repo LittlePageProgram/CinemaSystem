@@ -11,7 +11,7 @@
 		insert ticketseat values(#{id},#{sid},#{seatNum})
 	</insert>
 	
-	<select id="findAllId">
+	<select id="findAllId" resultType="com.littlepage.entity.Ticketseat">
 		select * from ticketseat where id=#{id}
 	</select>
 	

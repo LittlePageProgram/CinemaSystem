@@ -15,4 +15,6 @@ public interface UserMapper {
 	public List<User> findUser(String username);
 	
 	public void addUser(User user);
+
+	public List<User> showAllUser();
 }

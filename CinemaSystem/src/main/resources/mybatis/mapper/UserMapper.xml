@@ -17,27 +17,9 @@
 		SELECT * FROM user
 		WHERE loginName=#{loginName}
 	</select>
-	<!-- 
-	<delete id="deleteUser" parameterType="com.littlepage.mybatis.entity.User">
-		DELETE FROM user
-		WHERE
-		name=#{name}
-	</delete>
 	
-	<update id="updateUser" parameterType="com.littlepage.mybatis.entity.User">
-		UPDATE user SET
-		password=#{password}
-		WHERE
-		name=#{name}
-	</update>
-	
-	<select id="show" resultType="com.littlepage.mybatis.entity.User">
-		SELECT * from user
+	<select id="showAllUser" resultType="com.littlepage.entity.User">
+		select * from user where role!='administrator'
 	</select>
-	
-	<select id="selectByExample" resultType="com.littlepage.mybatis.entity.User">
-		SELECT * from user
-	</select>
-	 -->
 </mapper>
 
